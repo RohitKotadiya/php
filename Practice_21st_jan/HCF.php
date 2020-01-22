@@ -1,6 +1,6 @@
 <?php
-    $numberOne = 24;
-    $numberTwo = 30;
+    $numberOne = 20;
+    $numberTwo = 50;
     $factors =[];
     if($numberOne < $numberTwo):
         $smallNum = $numberOne;
