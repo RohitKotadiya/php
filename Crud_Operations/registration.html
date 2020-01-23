@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Registration Page</title>
+    </head>
+    <body>
+        <form method="POST" action="registration.php">
+        <input type="text" name="uName" placeholder="Enter User name" required><br>     
+       <input type="email" name="email" placeholder="Enter Email" required><br>
+       <input type="number" name="mobileNo" placeholder="Enter Mobile No" required><br>
+       <input type="password" name="uPass" placeholder="Enter Password" required><br>
+        Gender : <input type="radio" value="Male" name="gender" required>Male
+                <input type="radio" value="Female" name="gender" required>Female<br>
+        Hobbies : <input type="checkbox" name="hobbyOne" value="Reading"> Reading
+                  <input type="checkbox" name="hobbyTwo" value="Sports"> Sports<br>
+        <select name="city" required>
+            <option  value="Ahmedabad">Ahmedabad</option>
+            <option value="Palanpur">Palanpur</option>
+            <option value="Surat">Surat</option>
+        </select><br>
+        <input type="submit" value="REGISTER">
+    </form>
+    </body>
+</html>
