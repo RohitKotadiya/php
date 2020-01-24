@@ -12,7 +12,6 @@
 <?php
     extract($_POST);
     if(isset($fromMonth) && isset($toMonth) && isset($year)) {
-        
         while($fromMonth <= $toMonth) {
             $day = 1;
             $daysOfMonth = date('t', mktime(0, 0, 0, (int)$fromMonth , 1 , (int)$year));
