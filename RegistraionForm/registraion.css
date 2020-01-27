@@ -1,0 +1,39 @@
+label {
+    display: inline-block;
+    width : 250px;
+    margin-bottom: 20px;
+}
+fieldset {
+    padding: 30px;
+    margin-top: 50px;
+    width: 70%;
+    margin-left: 12%;
+}
+input[type="radio"],input[type="checkbox"] {
+    margin-left: 20px;
+}
+input[type="submit"] {
+    margin-left: 42%;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+#specialLbl{
+    vertical-align: 100px;
+}
+#specialLbl2 {
+    vertical-align: 50px;
+}
+#clickCheck {
+    margin-left: 180px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#other-info {
+    display: none;
+}
+.red{
+    color:red;
+    font-size: 50px;
+}
