@@ -10,65 +10,67 @@
     </head>
     <body>
         <form action="registrationUpdated.php" method="POST" enctype="multipart/form-data">
-            <fieldset id="account-info">
+             <fieldset id="account-info">
                 <legend>ACCOUNT DETAILS</legend>
                 <label>First Name</label>
                 <select name="account[prefix]" required>
-                    <?php $pre = ['Mr', 'Miss' , 'Dr' , 'Mrs']; ?>                 
-                    <?php foreach($pre as $value) :  ?>
-                        <option value="<?= $value ?>"><?= $value ?> </option>
+                    <?php $prefixList = ['Mr', 'Miss' , 'Dr' , 'Mrs']; ?>                 
+                    <?php foreach($prefixList as $value) :  ?>
+                    <?php $selected = (getFieldValue('account','prefix') == $value ? "selected" : ""); ?>
+                        <option value="<?= $value ?>" <?= $selected ?> > <?= $value ?> </option>
                     <?php endforeach; ?>
                 </select>
-                <input type="text" name="account[fName]" required value="<?= getFieldValue('account', 'fName'); ?>"><br>
+                <input type="text" name="account[fName]" required value="<?= getFieldValue('account', 'fName') ?>"><br>
                 
                 <label>Last Name</label>
-                <input type="text" name="account[lName]" required value=<?= getFieldValue("account", "lName"); ?>><br>
+                <input type="text" name="account[lName]" required value=<?= getFieldValue("account", "lName") ?>><br>
                 
                 <label>Date Of Birth</label>
-                <input type="date" name="account[dob]" ><br>
+                <input type="date" name="account[dob]" value=<?= getFieldValue('account', 'dob')?> > <br>
                 
                 <label>Phone Number</label>
-                <input type="number" name="account[phoneNumber]" required><br>
+                <input type="number" name="account[phoneNumber]" required value=<?= getFieldValue('account', 'phoneNumber') ?>><br>
 
                 <label>Email Id</label>
-                <input type="email" name="account[emailId]" required><br>
+                <input type="text" name="account[emailId]" required value=<?= getFieldValue('account', 'emailId') ?> ><br>
 
                 <label>Password</label>
-                <input type="password" name="account[pass]" ><br>
+                <input type="password" name="account[pass]" value = <?= getFieldValue('account', 'pass')?>><br>
 
                 <label>Confirm Password</label>
-                <input type="password" name="account[confirmPass]" ><br>
-            <!-- </fieldset>
-            <fieldset id="address-info">
+                <input type="password" name="account[confirmPass]" value= <?= getFieldValue('account', 'confirmPass') ?> ><br>
+            </fieldset>
+  <!--          <fieldset id="address-info">
                 <legend>ADDRESS DETAILS</legend>
 
                 <label>Address Line 1</label>
-                <input type="text" name="addressOne" required><br>
+                <input type="text" name="address[addressOne]" value= <?= getFieldValue('address', 'addressOne') ?> ><br>
 
                 <label>Address Line 2</label>
-                <input type="text" name="addressTwo" required><br>
+                <input type="text" name="address[addressTwo]" value= <?= getFieldValue('address', 'addressTwo') ?> ><br>
 
                 <label>Company</label>
-                <input type="text" name="company" required><br>
+                <input type="text" name="address[company]" value= <?= getFieldValue('address', 'company' ) ?> ><br>
 
                 <label>City</label>
-                <input type="text" name="city" required><br>
+                <input type="text" name="address[city]" value= <?= getFieldValue('address', 'city') ?> ><br>
 
                 <label>State</label>
-                <input type="text" name="state" required><br>
+                <input type="text" name="address[state]" value= <?= getFieldValue('address', 'state') ?> ><br>
         
                 <label>Country </label>
-                <select name="country" required>
-                    <option value="India">India</option>
-                    <option value="USA">USA</option>
-                    <option value="UK">UK</option>
-                    <option value="Canada">Canada</option>
+                <select name="address[country]" value= <?= getFieldValue('address', 'country') ?> >
+                    <?php $countryList = ['India', 'USA', 'UK', 'Canada', 'Brazil', 'Iran']; ?>
+                    <?php foreach($countryList as $country) : ?>
+                            <?php $selected = (getFieldValue('address', 'country') == $country) ? "selected" : "" ?>
+                            <option value="<?= $country ?>" <?= $selected ?> > <?= $country ?> </option>
+                        <?php endforeach; ?>
                 </select><br><br>
 
                 <label>Postal Code</label>
-                <input type="text" name="postalCode" required><br>
-            </fieldset>
-            
+                <input type="text" name="address[postalCode]" value= <?= getFieldValue('address', 'postalCode') ?> ><br>
+            </fieldset> 
+         
             <div id="clickCheck">
                 <input type="checkbox" name="chkNext" id="chkNext" onchange="showNext();">Check to Fill Other information
             </div>
@@ -77,46 +79,48 @@
                 <legend>OTHER INFORMATION</legend>
 
                 <label id="specialLbl">Describe Your Self</label>
-                <textarea cols="50" rows="8" name="selfInfo" required></textarea><br><br>
+                <textarea cols="50" rows="8" name="other[selfInfo]" required></textarea><br><br>
 
                 <label>Profile Picture</label>
-                <input type="file" name="profilePicture" required accept="image/*"><br><br>
+                <input type="file" name="other[profilePicture]" required accept="image/*"><br><br>
 
                 <label>Upload Certificate</label>
-                <input type="file" name="certificate" required accept=".pdf"><br><br>
+                <input type="file" name="other[certificate]" required accept=".pdf"><br><br>
 
                 <label>How long have you been in business?</label>
-                <input type="radio" name="exp" value="1" required>UNDER 1 Year
-                <input type="radio" name="exp" value="2" required>1-2 Year
-                <input type="radio" name="exp" value="3" required>2-5 Year
-                <input type="radio" name="exp" value="4" required>5-10 Year
-                <input type="radio" name="exp" value="5" required>OVER 10 Year <br><br>
-
+                <?php $expList = ['UNDER 1 YEAR', '1-2 YEAR', '2-5 YEAR', '5-10 YEAR', 'OVER 10 YEAR']; ?>
+                <?php foreach($expList as $exp) : ?> 
+                    <?php $checkedVal = (getFieldValue('other', 'exp') == $exp ) ? "selected" : "" ?> 
+                    <input type="radio" name="other[exp]" value="<?php getFieldValue('other', 'exp') ?>" <?= $checkedVal ?> ><?= $exp ?>
+                <?php endforeach; ?>
                 <label>Number of unique clients you see each week?</label>
-                <select name="uniqueClient" required>
-                    <option value="1-5">1-5</option>
-                    <option value="6-10">6-10</option>
-                    <option value="11-15">11-15</option>
-                    <option value="15+">15+</option>
+                <select name="other[uniqueClient]">
+                <?php $clientList = ['1-5', '6-10', '11-15', '15+'] ?>
+                    <?php foreach($clientList as $client) : ?>
+                        <?php $selectedClient = (getFieldValue('other', 'uniqueClient') == $client ) ? "selected" : "" ?>
+                        <option value="<?= $client ?>" <?= $selectedClient ?> > <?= $client ?> </option>
+                    <?php endforeach; ?>
                 </select><br><br>
 
                 <label>How do you like us to get in touch with you?</label>
-                <input type="checkbox" name="chkPost">Post
-                <input type="checkbox" name="chkEmail">Email
-                <input type="checkbox" name="chkSms">SMS
-                <input type="checkbox" name="chkPhone">Phone <br><br>
+                <?php $getTouchList = ['Post', 'SMS' , 'Email' , 'Phone']; ?>
+                    <?php foreach($getTouchList as $getTouch) : ?>
+                        <?php $selectedTouch = (getFieldValue('other', 'chkTouch') == $getTouch) ? "selected" : "" ?>
+                        <input type="checkbox" name="other[chkTouch][]" value="<?= $getTouch ?>" <?= $selectedTouch ?> ><?= $getTouch ?>
+                    <?php endforeach; ?>
+               <br><br>
 
                 <label id="specialLbl2">Hobbies</label>
-                <select name="hobby" required multiple>
-                    <option value="Music">Music</option>
-                    <option value="travelling">Travelling</option>
-                    <option value="Blogging">Blogging</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Art">Art</option>
+                <select name="other[hobby]"  multiple>
+                <?php $hobbyList = ['Music', 'Singing', 'Dancing' , 'Reading', 'Sports']; ?>
+                    <?php foreach($hobbyList as $hobby) : ?>
+                    <?php $selectedHobby = (getFieldValue('other', 'hobby') == $hobby ) ? "selected" : "" ?>
+                    <option value="<?= $hobby ?>" <?= $selectedHobby ?> ><?= $hobby ?></option>
+                    <?php endforeach; ?>
                 </select><br><br> -->
                 <input type="submit" value="REGISTER" name="submit">          
 
-            <!-- </fieldset> -->
+             </fieldset> 
     </form>
     </body>
     <script>
