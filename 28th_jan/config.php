@@ -9,14 +9,11 @@
         $tableValues = "'" . implode("','", $values) . "'";
 
         $insertQuery = "insert into $tableName ($tablefields) values ($tableValues)";
-        $result = mysqli_query($connection, $insertQuery);
-        if($result == 1)
-            echo "<br> Record Inserted";
-        else
-            echo "<br>". mysqli_error($connection);
-    }
-
-    insertData(['prefix', 'firstName', 'lastName', 'dateOfBirth', 'phoneNumber', 'emailAddress', 'password'], 
-                ['Mr', 'Shyam', 'Patel', '1999-06-06', 9898958521, 'shyampatel@gmail.com', 'shyam123'], 'customers');
-
+        return (mysqli_query($connection, $insertQuery) == 1 ) ? 1 : mysqli_error($connection);
+    } 
+    function deleteRecord($tableName, $condition) {
+        global $connection;
+        $deleteQuery = "delete from $tableName where $condition";
+        return (mysqli_query($connection, $deleteQuery) == 1 ) ? 1 : mysqli_error($connection);
+    }    
 ?>
