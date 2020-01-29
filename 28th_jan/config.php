@@ -15,5 +15,12 @@
         global $connection;
         $deleteQuery = "delete from $tableName where $condition";
         return (mysqli_query($connection, $deleteQuery) == 1 ) ? 1 : mysqli_error($connection);
+    }
+    function updateRecord($tableName, $setValues, $condition ="") {
+        global $connection;
+        $updateQuery = (func_num_args() == 3 ) ? "update $tableName set $setValues where $condition" : "update $tableName set $setValues";
+        // echo "$updateQuery";
+        return (mysqli_query($connection, $updateQuery) == 1 ) ? 1 : mysqli_error($connection);
     }    
+
 ?>
