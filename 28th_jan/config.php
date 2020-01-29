@@ -18,9 +18,29 @@
     }
     function updateRecord($tableName, $setValues, $condition ="") {
         global $connection;
-        $updateQuery = (func_num_args() == 3 ) ? "update $tableName set $setValues where $condition" : "update $tableName set $setValues";
+        $updateQuery = (func_num_args() == 3 ) 
+                        ? "update $tableName set $setValues where $condition" 
+                        : "update $tableName set $setValues";
         // echo "$updateQuery";
         return (mysqli_query($connection, $updateQuery) == 1 ) ? 1 : mysqli_error($connection);
-    }    
+    } 
+    function fetchData($columnNames, $tableName , $condition ="") {
+        global $connection;
+        $resultSet = [];
+        $err = "No Record Found";
+        $searchQuery = (func_num_args() == 3 ) 
+                        ? "select $columnNames from $tableName where $condition" 
+                        : "select $columnNames from $tableName";
+        // echo $searchQuery;
+        $searchResult = mysqli_query($connection, $searchQuery);
+        if(mysqli_num_rows($searchResult) > 0 ) {
+            while($row = mysqli_fetch_assoc($searchResult)) {
+                array_push($resultSet, $row);
+            }
+            return $resultSet;
+        }else {
+            return $err;
+        }
+    }   
 
 ?>
