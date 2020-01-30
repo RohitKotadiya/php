@@ -3,13 +3,14 @@
     $connection = mysqli_connect('localhost:3307', 'root', '', 'customer_portal') or die("Connection Error !");
     echo "Connected <br>";
 
-    function insertData($fields, $values, $tableName) {
+    function insertData($data, $tableName) {
         global $connection;
-        $tablefields = implode(",", $fields);
-        $tableValues = "'" . implode("','", $values) . "'";
+        $tablefields = implode(",", array_keys($data));
+        $tableValues = "'" . implode("','", array_values($data)) . "'";
 
         $insertQuery = "insert into $tableName ($tablefields) values ($tableValues)";
-        return (mysqli_query($connection, $insertQuery) == 1 ) ? 1 : mysqli_error($connection);
+        echo "<br>" . $insertQuery;
+        return (mysqli_query($connection, $insertQuery) == 1 ) ? mysqli_insert_id($connection) : mysqli_error($connection);
     } 
     function deleteRecord($tableName, $condition) {
         global $connection;
@@ -46,5 +47,9 @@
         $lastCust = fetchData($columnName, $tableName, "$columnName = (select max($columnName) from $tableName)");
         $lastCustId = $lastCust[0][$columnName];
         return $lastCustId;
+    }
+    function addLastId($arrData,$keyName, $lastId) {
+        $arrData[$keyName] = $lastId;
+        return $arrData;
     }
 ?>
