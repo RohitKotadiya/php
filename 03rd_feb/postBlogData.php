@@ -6,23 +6,33 @@
     function validateBlogField($section ,$fieldName) {
         echo "<pre>";    //to validate URL and File Extension
     }
-    function prepareBlogData($operation) {
-        $cleanBlogData = cleanBlogInfo('addBlg');
+    function prepareBlogData($operation,$section) {
+        $cleanBlogData =$cleanCatData = [];
+        if($section == 'addBlg')
+            $cleanBlogData = cleanBlogInfo($section);
+        else
+            $cleanCatData = cleanCatInfo($section);
         $postData = [];
-        foreach($cleanBlogData as $key => $value) {
-            if($key != 'cat')
-                $postData[$key] = $value;
-            else
-                $catData[$key] = explode(",",$value);
+        if($cleanBlogData != null){
+            foreach($cleanBlogData as $key => $value) {
+                if($key != 'cat')
+                    $postData[$key] = $value;
+                else
+                    $catData[$key] = explode(",",$value);
+            }
         }
         echo "</pre>";
         $inserted = $updated = 0;
         switch($operation) {
-            case 'insert'   :   $lastId = insertData($postData, "blog_post");
-                                foreach($catData['cat'] as $cat) {
-                                    $tmpArr['postId'] = $lastId;
-                                    $tmpArr['categoryId'] = $cat; 
-                                    insertData($tmpArr, "post_category");
+            case 'insert'   :   if($section == 'addBlog'){
+                                    $lastId = insertData($postData, "blog_post");
+                                    foreach($catData['cat'] as $cat) {
+                                        $tmpArr['postId'] = $lastId;
+                                        $tmpArr['categoryId'] = $cat; 
+                                        insertData($tmpArr, "post_category");
+                                    }
+                                }else if($section == 'addCat') {
+                                    echo insertData($cleanCatData, "category");
                                 }
                                 break;
             case 'update'   :   updateRecord("customers", $cleanAccountData,"customerId = $editUserId");
@@ -46,12 +56,11 @@
             switch($fieldName) {
                 case 'title'       :   $preparedData['title'] = $fieldValue;
                                         break;
-                case 'URL'         :   $preparedData['blogURL'] = $fieldValue;
+                case 'URL'         :   $preparedData['url'] = $fieldValue;
                                         break;
                 case 'content'     :   $preparedData['content'] = $fieldValue;
                                         break;
-                case 'postImg'     :   $preparedData['image'] = $fieldValue;
-                                        break;
+                
                 case 'publishedAt' :   $preparedData['publishedAt'] = $fieldValue . " ". date('H:m:s',time());
                                         break;
                 case 'category'    :   if(is_array($fieldValue)) {
@@ -64,6 +73,32 @@
         }
         $preparedData['createdAt'] = date('Y-m-d H:i:s', time());
         $preparedData['userId'] = $_SESSION['userId'];
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($_FILES['postImg']['name']);
+        move_uploaded_file($_FILES['postImg']['tmp_name'], $uploadFile); 
+        $preparedData['image'] = $uploadDir . $_FILES['postImg']['name'];
+        return $preparedData;
+    }
+    function cleanCatInfo($section) {
+
+        $preparedData = [];
+        foreach($_POST[$section] as $fieldName => $fieldValue) {
+            switch($fieldName) {
+                case 'title'       :   $preparedData['title'] = $fieldValue;
+                                        break;
+                case 'URL'         :   $preparedData['url'] = $fieldValue;
+                                        break;
+                case 'content'     :   $preparedData['content'] = $fieldValue;
+                                        break;
+                case 'publishedAt' :   $preparedData['publishedAt'] = $fieldValue . " ". date('H:m:s',time());
+                                        break;
+                case 'cat'    :   $preparedData['parentCatId'] = $fieldValue;
+                                       break;  
+                case 'metaTitle'   :    $preparedData['metaTitle'] = $fieldValue;
+                                        break;
+                }
+        }
+        $preparedData['createdAt'] = date('Y-m-d H:i:s', time());
         $uploadDir = 'uploads/';
         $uploadFile = $uploadDir . basename($_FILES['postImg']['name']);
         move_uploaded_file($_FILES['postImg']['tmp_name'], $uploadFile); 

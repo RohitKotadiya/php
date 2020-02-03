@@ -9,7 +9,7 @@
         $tableValues = "'" . implode("','", array_values($data)) . "'";
 
         $insertQuery = "insert into $tableName ($tablefields) values ($tableValues)";
-        // echo "<br>" . $insertQuery;
+        echo "<br>" . $insertQuery;
         return (mysqli_query($connection, $insertQuery) == 1 ) ? mysqli_insert_id($connection) : mysqli_error($connection);
     } 
     function deleteRecord($tableName, $condition) {

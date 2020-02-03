@@ -21,7 +21,7 @@
 <a href="logout.php"> logout </a><br><br>
 <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
 <a href="addBlog.php"> Add New Blog Post </a><br><br>
-<a href="manageCategory.php"> Manage Category </a><br><br>
+<a href="blogCategories.php"> Manage Category </a><br><br>
 
 
 

@@ -50,7 +50,7 @@
     if(isset($_POST['addNewBlog'])) {
         if($flag = 1){
             echo "Ready to insert";   //write code to preprocess and then insert
-            prepareBlogData('insert');
+            prepareBlogData('insert','addBlg');
         }else {
             echo "Error";
         }
