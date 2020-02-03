@@ -1,0 +1,6 @@
+array_combine() = it create array -  one array for key
+                                - another one for its values
+
+$arrOne = ['a','b'];
+$arrTwo = [10,20];
+array_combine($arrOne,$arrTwo); 
