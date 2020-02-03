@@ -30,10 +30,14 @@
             <?php foreach($result as $singlInfo) : ?>
                 <tr>
                     <?php foreach($singlInfo as $key => $value) : ?>
+                        <?php if($key == 'image') : ?>
+                            <td><img src="<?= $value ?>" height="40px" width="50px"></td>
+                        <?php else : ?>
                             <td><?= $value ?></td>
+                        <?php endif; ?>
                     <?php endforeach; ?>
-                    <td><a href="registrationForm.php?userId=<?=$singlCustInfo['customerId'] ?>"> edit </a></td>
-                    <td><a href="deleteRecord.php?userId=<?=$singlCustInfo['customerId'] ?>"> delete </a></td>
+                    <td><a href="addCategory.php?catId=<?=$singlInfo['categoryId'] ?>"> edit </a></td>
+                    <td><a href="deleteRecord.php?catId=<?= $singlInfo['categoryId'] ?>" >delete </a></td>
                 </tr>
             <?php endforeach; ?>
     </table>

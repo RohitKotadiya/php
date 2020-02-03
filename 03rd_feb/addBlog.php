@@ -27,8 +27,8 @@
     <div id="addBlg" >
         Title : <input type="text" name="addBlg[title]" value="<?= getFieldValue('addBlg', 'title') ?>" ><br><br>
         Content :<input type="text" name="addBlg[content]" value="<?= getFieldValue('addBlg', 'content') ?>" ><br><br>
-        URL : <input type="text" name="addBlg[URL]"  value="<?= getFieldValue('addBlg', 'URL') ?>"  ><br><br>
-        <span> <?= validateBlogField('adBlg','URL') ?> </span><br>
+        URL : <input type="text" name="addBlg[url]"  value="<?= getFieldValue('addBlg', 'url') ?>"  ><br><br>
+        <span> <?= validateBlogField('adBlg','url') ?> </span><br>
         published At : <input type="date" name="addBlg[publishedAt]" value="<?= getFieldValue('addBlg', 'publishedAt') ?>" ><br><br>
         Category : 
         <select name="addBlg[category][]" multiple>
@@ -37,8 +37,8 @@
                     <option value="<?= $cat['parentCatId'] ?>" <?= $selectedCat ?> ><?= $cat['title'] ?></option>
                 <?php endforeach; ?>
                 </select><br><br>
-        Choose Image : <input type="file" name="postImg" accept="image/*" value="<?= getFieldValue('addBlg', 'postImg') ?>"><br><br>
-        <span> <?= validateBlogField('addBlg','postImg') ?> </span<br>
+        Choose Image : <input type="file" name="image" accept="image/*" value="<?= getFieldValue('addBlg', 'image') ?>"><br><br>
+        <span> <?= validateBlogField('addBlg','image') ?> </span<br>
 
         <input type="submit" name="addNewBlog" value="ADD BLOG">
     <div>

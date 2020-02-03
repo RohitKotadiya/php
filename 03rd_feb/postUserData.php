@@ -3,13 +3,13 @@
     echo "hi<pre>";
     $flag = true;
     function getFieldValue($section, $fieldName, $returnType = "") {
-        global $userData;
+        global $catData;
         if(isset($_POST[$section][$fieldName]))
             return $_POST[$section][$fieldName];
-        // else if(!empty($userData[$section][$fieldName]))
-        //     return $userData[$section][$fieldName];
-        // else
-        //     return $returnType;
+        else if(!empty($catData[$section][$fieldName]))
+            return $catData[$section][$fieldName];
+        else
+            return $returnType;
     }
     function validateField($section,$fieldName) {
         global $flag;
@@ -41,11 +41,6 @@
                 case 'phoneNumber'  :   if(!preg_match('/[0-9]/', $fieldValue) || strlen($fieldValue) != 10){
                                             $flag = false;
                                             return $errMsg . $fieldName;
-                                        }
-                                        break;
-                case 'chkCondition' :   if(!isset($fieldValue)) {
-                                            $flag = false;
-                                            return "please check terms and conditions";
                                         }
                                         break;
             }

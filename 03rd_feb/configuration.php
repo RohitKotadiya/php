@@ -15,6 +15,7 @@
     function deleteRecord($tableName, $condition) {
         global $connection;
         $deleteQuery = "delete from $tableName where $condition";
+        echo "$deleteQuery";
         return (mysqli_query($connection, $deleteQuery) == 1 ) ? 1 : mysqli_error($connection);
     }
     function updateRecord($tableName, $data, $condition ="") {
@@ -27,7 +28,7 @@
         $updateQuery = (func_num_args() == 3 ) 
                         ? "update $tableName set $fieldValue where $condition" 
                         : "update $tableName set $fieldValue";
-        // echo "$updateQuery<br><br>";
+        echo "$updateQuery<br><br>";
         return (mysqli_query($connection, $updateQuery) == 1 ) ? 1 : mysqli_error($connection);
     } 
     function fetchData($columnNames, $tableName , $condition ="") {

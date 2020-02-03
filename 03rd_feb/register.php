@@ -45,14 +45,21 @@
                 <label id="specialLbl">Describe Your Self</label>
                 <textarea cols="50" rows="8" name="register[selfInfo]" ><?= getFieldValue('register', 'selfInfo') ?></textarea>
                 <span> <?= validateField('register','selfInfo') ?> </span><br><br>
-            
-                <input type="checkbox" name="register[chkCondition]" value="1">Hereby , I accept terms and conditions
-                <span> <?= validateField('register','chkCondition') ?> </span><br><br>
-
+                <input type="checkbox" name="register[chkCondition]" id="chk">Hereby , I accept terms and conditions
             </div>
         
-        <input type="submit" name="submit" value="REGISTER">
+                <input type="submit" name="submit" value="REGISTER" onclick="validateCheckBox();">
     </form>
+    <script>
+        function validateCheckBox() {
+            alert("hhh");
+            if(document.getElementById('chk').checked == false)
+            {
+                alert('You must agree to the terms first.');
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
 
