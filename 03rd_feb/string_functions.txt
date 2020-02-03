@@ -1,0 +1,10 @@
+str_pos() = used to find the position of substring in substring
+
+syntax : str_pos("substr", "str", offset)
+
+$strOne = "hello how are you ";
+
+str_pos("are", $strOne);
+
+defualt value of offset = 0 - menas starts from 0 position 
+
