@@ -12,7 +12,8 @@
     }
 
     function showPosts() {
-        // $query = "SELECT postId,title,publishedAt FROM "
+        $query = "SELECT P.postId,P.title,P.publishedAt,C.title FROM blog_post 
+                    LEFT JOIN "
     }
 ?>
 <h1>Hello <?= $userName ?></h2>
