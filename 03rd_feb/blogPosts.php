@@ -13,7 +13,7 @@
 
     function showPosts() {
         $query = "SELECT P.postId,P.title,P.publishedAt,C.title FROM blog_post 
-                    LEFT JOIN "
+                    LEFT JOIN parent_category ON P."
     }
 ?>
 <h1>Hello <?= $userName ?></h2>
