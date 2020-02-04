@@ -1,6 +1,5 @@
 <?php
     require_once "configuration.php";
-    echo "hi<pre>";
     $flag = true;
     function getFieldValue($section, $fieldName, $returnType = "") {
         global $catData, $blogData, $userData;
@@ -54,8 +53,15 @@
         global $editUserId;
         $cleanData = prepareAccountData('register');
         $inserted = $updated = 0;
+        $exists = userExist($cleanData['emailAddress']);
         switch($operation) {
-            case 'insert'   :   $inserted = insertData($cleanData, "user");
+        case 'insert'   :       if($exists == 1)
+                                    $inserted = insertData($cleanData, "user");
+                                else {
+                                    echo "<script> alert('User Already exists! ');
+                                    window.location.href='register.php';
+                                    </script>";
+                                }
                                 break;
             case 'update'   :   $updated = updateRecord("user", $cleanData,"userId = $editUserId");
                                 break;
@@ -95,7 +101,10 @@
         $preparedData['createdAt'] = date('Y-m-d H:i:s', time());
         return $preparedData;
     }
-
-    
-    echo "</pre>";
-?>
+    function userExist($email) {
+        $allUser = fetchData("emailAddress","user");
+        foreach($allUser as $singleUser) {
+            return ($singleUser['emailAddress'] != $email) ? 1 : 0;
+        }
+    }
+    ?>

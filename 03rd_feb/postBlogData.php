@@ -1,11 +1,29 @@
 <?php
     session_start();
-    $flag = 1;
-    date_default_timezone_set('Asia/kolkata'); //to set time zone
+    $flagUrl = 1;
+    date_default_timezone_set('Asia/kolkata');
 
-    function validateBlogField($section ,$fieldName) {
-        echo "<pre>";    //to validate URL and File Extension
+    function validateURLField($section ,$fieldName) {
+         if(isset($_POST[$section][$fieldName])) {
+             $fieldValue = $_POST[$section][$fieldName];
+            if($section == 'addBlg') {
+                return getUrl('blog_post',$fieldValue);
+            }
+            if($section == 'addCat') {
+                return getUrl('category',$fieldValue);
+            }
+        }
     }
+    function getUrl($tableName, $fieldValue) {
+        global $flagUrl;
+        $allUrl = fetchData("url", "$tableName" , "url = '$fieldValue'");
+        if(is_array($allUrl)) {
+            $flagUrl = 0;
+            return  "URL Exisits";
+        } 
+    }
+
+     
     function prepareBlogData($operation,$section) {
         $cleanBlogData =$cleanCatData = [];
         global $editCatId, $editPostId;
@@ -22,7 +40,6 @@
                     $catData[$key] = explode(",",$value);
             }
         }
-        echo "</pre>$section , $operation";
         $inserted = $updated = 0;
         switch($operation) {
             case 'insert'   :   if($section == 'addBlg'){
@@ -115,14 +132,14 @@
             switch($fieldName) {
                 case 'title'       :   $preparedData['title'] = $fieldValue;
                                         break;
-                case 'URL'         :   $preparedData['url'] = $fieldValue;
+                case 'url'         :   $preparedData['url'] = $fieldValue;
                                         break;
                 case 'content'     :   $preparedData['content'] = $fieldValue;
                                         break;
                 case 'publishedAt' :   $preparedData['publishedAt'] = $fieldValue . " ". date('H:m:s',time());
                                         break;
-                case 'cat'    :   $preparedData['parentCatId'] = $fieldValue;
-                                       break;  
+                case 'cat'    :         $preparedData['parentCatId'] = $fieldValue;
+                                        break;  
                 case 'metaTitle'   :    $preparedData['metaTitle'] = $fieldValue;
                                         break;
                 }
@@ -139,18 +156,25 @@
     function getData($que) {
         $postInfo = [];
         global $connection,$userId;
-        
-         $resultSet = mysqli_query($connection, $que);
-        
-         if(mysqli_num_rows($resultSet) > 0) {
+        $resultSet = mysqli_query($connection, $que);
+        if(mysqli_num_rows($resultSet) > 0) {
              while($row = mysqli_fetch_assoc($resultSet)) {
                  array_push($postInfo, $row);
              }
-         }else {
+        }else {
              echo mysqli_error($connection);
-         }
-         return $postInfo;
+        }
+        return $postInfo;
      }
 
-
+    function getCatList() {
+        $catList = [];
+        $result = fetchData("categoryId,title","category");
+        if(is_array($result)) {
+            foreach($result as $key => $value) {
+                array_push($catList,$value);
+            }
+        }
+        return $catList;
+    }
 ?>

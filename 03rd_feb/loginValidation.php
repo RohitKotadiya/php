@@ -10,9 +10,7 @@
             header('Location:blogPosts.php');
         }else {
             echo "<script> alert('Username or Password Wrong!'); </script>";
-        }
-
-        
+        }  
     }
 
 ?>

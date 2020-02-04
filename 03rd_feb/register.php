@@ -1,8 +1,7 @@
 <?php
     require_once "postUserData.php";
     require_once "updateRecord.php";
-    
-    $userData =[]; // to store data of edit cat
+    $userData =[]; // store data of edit User
     if(isset($_GET['userId'])) {
         $userData = getUserData($_GET['userId']);  //fun from updateRecord.php
     }
@@ -12,14 +11,10 @@
 <html lang="en">
 <head>
       <title>Registraion</title>
-      <link rel="stylesheet" type="text/css" href="register.css">
-        <style>
-            span{
-                color : red;
-            }
-        </style>
+      <link rel="stylesheet" type="text/css" href="css/registeration.css">
 </head>
 <body>
+    <h2> REGISTER  </h2>
     <form method="POST" action ="register.php">
         <div id="register">
             <label>First Name</label>
@@ -49,20 +44,22 @@
                 <input type="password" name="register[confirmPass]" value= <?= getFieldValue('register', 'password') ?> >
                 <span> <?= validateField('register','confirmPass') ?> </span><br>
                 <label id="specialLbl">Describe Your Self</label>
-                <textarea cols="50" rows="8" name="register[selfInfo]" ><?= getFieldValue('register', 'selfInfo') ?></textarea>
+                <textarea cols="25" rows="4" name="register[selfInfo]" ><?= getFieldValue('register', 'selfInfo') ?></textarea>
                 <span> <?= validateField('register','selfInfo') ?> </span><br><br>
-                <input type="checkbox" name="register[chkCondition]" id="chk">Hereby , I accept terms and conditions
+                <input type="checkbox" name="register[chkCondition]" id="chk" required >Hereby , I accept terms and conditions
             </div>
             <?php if(!isset($_GET['userId'])) : ?>
                 <input type="submit" name="submit" value="REGISTER" onclick="validateCheckBox();">
+                <input type="reset" name="reset" value="RESET">
+                <a href="login.php"> BACK </a>
             <?php else : ?>
                 <input type="hidden" value="<?= $_GET['userId'] ?>" name="userId">
                 <input type="submit" name="updateUser" value="UPDATE USER" onclick="validateCheckBox();">
+                <a href="blogPosts.php"> BACK </a>
             <?php endif; ?>
     </form>
     <script>
         function validateCheckBox() {
-            alert("hhh");
             if(document.getElementById('chk').checked == false)
             {
                 alert('You must agree to the terms first.');
@@ -76,7 +73,6 @@
 <?php
     if(isset($_POST['submit'])) {
         if($flag == 1){
-            echo "Ready to insert";   //write code to preprocess and then insert
             prepareUserData('insert');
         }else {
             echo "Error";
@@ -85,7 +81,6 @@
     if(isset($_POST['updateUser'])) {
         if($flag == 1){
             $editUserId = $_POST['userId'];
-            echo "Ready to update";   //write code to preprocess and then insert
             prepareUserData('update');
         }else {
             echo "Error";

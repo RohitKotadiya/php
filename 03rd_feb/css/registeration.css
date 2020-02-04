@@ -1,6 +1,6 @@
 label {
     display: inline-block;
-    width : 250px;
+    width : 150px;
     margin-bottom: 20px;
 }
 fieldset {
@@ -9,14 +9,17 @@ fieldset {
     width: 70%;
     margin-left: 12%;
 }
-input[type="radio"],input[type="checkbox"] {
-    margin-left: 20px;
-}
 input[type="submit"] {
-    margin-left: 42%;
-    height: 50px;
-    font-size: 25px;
-    font-weight: bolder;
+    margin-left: 40%;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+input[type="reset"] {
+    margin-left: 4%;
+    margin-right: 4%;
+    height: 30px;
+    font-size: 20px;
     margin-top: 20px;
 }
 #specialLbl{
@@ -32,4 +35,13 @@ input[type="submit"] {
 }
 #other-info {
     display: none;
+}
+#register {
+    margin-left: 40%;
+}
+h2 {
+    text-align: center;
+}
+span {
+    color: red;
 }

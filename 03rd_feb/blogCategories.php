@@ -23,6 +23,8 @@
     <title>Customer Information</title>
 </head>
 <body>
+<h2>BLOG CATEGORY</h2>
+
     <table border="1">
         <tr>
             <?php foreach(array_keys($result[0]) as $title) : ?>

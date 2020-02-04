@@ -9,19 +9,7 @@
         $result = fetchData("firstName", "user", "userId = $userId");
         $userName = $result[0]['firstName'];
     }
-
-    
-     
-    //  $que = "SELECT P.title,P.publishedAt,C.title as CategoryName FROM blog_post P 
-    //  LEFT JOIN  post_category PC 
-    //  ON P.postId = PC.postId   
-    //  LEFT JOIN category C
-    //  ON C.categoryId = PC.categoryId where P.userId = $userId";
-  
-     $que = "SELECT postId,title,publishedAt FROM blog_post where userId = $userId";    
-     $postInfo = getData($que);
-     
-    //  die();
+     $postInfo = fetchData("postId,title,publishedAt","blog_post", "userId = $userId");
 ?>
 <h3>Welcome <?= $userName ?></h3>
 <br>
@@ -33,9 +21,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Customer Information</title>
+    <title>Post Information</title>
 </head>
 <body>
+    <h2>BLOG POSTS</h2>
+    <?php if(!empty($postInfo)) : ?>
     <table border="1">
         <tr>
             <?php foreach(array_keys($postInfo[0]) as $title) : ?>
@@ -49,18 +39,23 @@
                     <?php $query = "SELECT C.title FROM  post_category PC LEFT JOIN category C ON 
                             PC.categoryId = C.categoryId WHERE postId = $postId"; 
                             $results = getData($query);
-                             ?>
+                            $arr = [];
+                    ?>
+                    <?php foreach($results as $res) :
+                                array_push($arr,$res['title']); 
+                                endforeach; 
+                    ?>
                 <tr>
                         <td><?= $singlInfo['postId'] ?></td>
                         <td><?= $singlInfo['title'] ?></td>
                         <td><?= $singlInfo['publishedAt'] ?></td>
-                        <td><?php foreach($results as $res) :
-                                echo $res['title']; endforeach; ?></td>
+                        <td><?= implode(",", $arr) ?></td>
                     <td><a href="addBlog.php?postId=<?=$singlInfo['postId'] ?>"> edit </a></td>
                     <td><a href="deleteRecord.php?postId=<?= $singlInfo['postId'] ?>" >delete </a></td>
                 </tr>
             <?php endforeach; ?>
     </table>
+    <?php endif; ?>
 </body>
 </html>
 

@@ -1,0 +1,12 @@
+#lgn {
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+span {
+    color: red;
+}
+input[type="text"]{
+    width: 250px;
+}
