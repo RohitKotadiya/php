@@ -6,14 +6,17 @@
         die();
     }else {
         $userId = $_SESSION['userId'];
+        $currentUser = fetchData("firstName", "user", "userId = $userId");
+        $userName = $currentUser[0]['firstName'];
         $result = fetchData("categoryId,image,title,createdAt","category");
     }
 ?>
-
+<h3>Welcome <?= $userName ?></h3>
+<br>
 <a href="logout.php"> logout </a><br><br>
 <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
 <a href="addCategory.php"> Add New Category </a><br><br>
-<a href="blogCategories.php"> Manage Category </a><br><br>
+<a href="blogPosts.php"> Manage Blog Posts </a><br><br>
 <!DOCTYPE html>
 <html lang="en">
 <head>

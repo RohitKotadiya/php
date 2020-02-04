@@ -3,11 +3,15 @@
     echo "hi<pre>";
     $flag = true;
     function getFieldValue($section, $fieldName, $returnType = "") {
-        global $catData;
+        global $catData, $blogData, $userData;
         if(isset($_POST[$section][$fieldName]))
             return $_POST[$section][$fieldName];
         else if(!empty($catData[$section][$fieldName]))
             return $catData[$section][$fieldName];
+        else if(!empty($blogData[$section][$fieldName]))
+            return $blogData[$section][$fieldName];
+        else if(!empty($userData[$section][$fieldName]))
+            return $userData[$section][$fieldName];
         else
             return $returnType;
     }
@@ -47,14 +51,13 @@
         }
     }
     function prepareUserData($operation) {
-        // global $editUserId;
+        global $editUserId;
         $cleanData = prepareAccountData('register');
-        print_r($cleanData);
         $inserted = $updated = 0;
         switch($operation) {
             case 'insert'   :   $inserted = insertData($cleanData, "user");
                                 break;
-            case 'update'   :   updateRecord("customers", $cleanAccountData,"customerId = $editUserId");
+            case 'update'   :   $updated = updateRecord("user", $cleanData,"userId = $editUserId");
                                 break;
         }
         if($inserted != 0) {
@@ -64,7 +67,7 @@
         }
         if($updated == 1) {
             echo "<script> alert('updated! ');
-                    window.location.href='showCustomers.php';
+                    window.location.href='blogPosts.php';
                     </script>";
         }
     }
@@ -82,9 +85,9 @@
                                         break;
                 case 'emailAddress' :   $preparedData['emailAddress'] = $fieldValue;
                                         break;
-                case 'phoneNumber'  :   $preparedData['mobileNumber'] = $fieldValue;
+                case 'phoneNumber'  :   $preparedData['phoneNumber'] = $fieldValue;
                                         break;
-                case 'selfInfo'     :   $preparedData['information'] = $fieldValue;
+                case 'selfInfo'     :   $preparedData['selfInfo'] = $fieldValue;
                                         break;
                 }
         }

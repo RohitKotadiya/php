@@ -8,7 +8,7 @@
     }
     function prepareBlogData($operation,$section) {
         $cleanBlogData =$cleanCatData = [];
-        global $editCatId;
+        global $editCatId, $editPostId;
         if($section == 'addBlg')
             $cleanBlogData = cleanBlogInfo($section);
         else
@@ -22,7 +22,7 @@
                     $catData[$key] = explode(",",$value);
             }
         }
-        echo "</pre>";
+        echo "</pre>$section , $operation";
         $inserted = $updated = 0;
         switch($operation) {
             case 'insert'   :   if($section == 'addBlg'){
@@ -31,7 +31,7 @@
                                     foreach($catData['cat'] as $cat) {
                                         $tmpArr['postId'] = $lastId;
                                         $tmpArr['categoryId'] = $cat; 
-                                        echo insertData($tmpArr, "post_category");
+                                        $inserted = insertData($tmpArr, "post_category");
                                     }
                                     if($inserted != 0) {
                                         echo "<script> alert('Added Successfully! ');
@@ -50,12 +50,20 @@
                                 }
                                 
                                 break;
-            case 'update'   :   if($section == 'addBlog'){
-                                    $lastId = insertData($postData, "blog_post");
+            case 'update'   :   if($section == 'addBlg'){
+                                    echo "under update";
+                                    $postData['updatedAt'] = date('Y-m-d H:i:s', time());
+                                    echo updateRecord("blog_post",$postData,"postId = $editPostId");
                                     foreach($catData['cat'] as $cat) {
-                                        $tmpArr['postId'] = $lastId;
-                                        $tmpArr['categoryId'] = $cat; 
-                                        insertData($tmpArr, "post_category");
+                                        $tmpArr['postId'] = $editPostId;
+                                        $tmpArr['categoryId'] = $cat;
+                                        deleteRecord("post_category","postId = $editPostId"); 
+                                        $inserted = insertData($tmpArr, "post_category");
+                                    }
+                                    if($inserted != 0) {
+                                        echo "<script> alert('updated! ');
+                                                window.location.href='blogPosts.php';
+                                                </script>";
                                     }
                                 }else if($section == 'addCat') {
                                     $updated = updateRecord("category", $cleanCatData,"categoryId = $editCatId");
@@ -82,7 +90,7 @@
                 case 'content'     :   $preparedData['content'] = $fieldValue;
                                         break;
                 
-                case 'publishedAt' :   $preparedData['publishedAt'] = $fieldValue . " ". date('H:m:s',time());
+                case 'publishedAt' :   $preparedData['publishedAt'] = $fieldValue;
                                         break;
                 case 'category'    :   if(is_array($fieldValue)) {
                                             $preparedData['cat'] = implode(",",$fieldValue);
@@ -126,6 +134,23 @@
         $preparedData['image'] = $uploadDir . $_FILES['image']['name'];
         return $preparedData;
     }
+
+
+    function getData($que) {
+        $postInfo = [];
+        global $connection,$userId;
+        
+         $resultSet = mysqli_query($connection, $que);
+        
+         if(mysqli_num_rows($resultSet) > 0) {
+             while($row = mysqli_fetch_assoc($resultSet)) {
+                 array_push($postInfo, $row);
+             }
+         }else {
+             echo mysqli_error($connection);
+         }
+         return $postInfo;
+     }
 
 
 ?>

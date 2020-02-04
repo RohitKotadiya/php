@@ -1,5 +1,11 @@
 <?php
     require_once "postUserData.php";
+    require_once "updateRecord.php";
+    
+    $userData =[]; // to store data of edit cat
+    if(isset($_GET['userId'])) {
+        $userData = getUserData($_GET['userId']);  //fun from updateRecord.php
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,15 +46,19 @@
                 <input type="password" name="register[password]" value = <?= getFieldValue('register', 'password')?>>
                 <span> <?= validateField('register','password') ?> </span><br>
                 <label>Confirm Password</label>
-                <input type="password" name="register[confirmPass]" value= <?= getFieldValue('register', 'confirmPass') ?> >
+                <input type="password" name="register[confirmPass]" value= <?= getFieldValue('register', 'password') ?> >
                 <span> <?= validateField('register','confirmPass') ?> </span><br>
                 <label id="specialLbl">Describe Your Self</label>
                 <textarea cols="50" rows="8" name="register[selfInfo]" ><?= getFieldValue('register', 'selfInfo') ?></textarea>
                 <span> <?= validateField('register','selfInfo') ?> </span><br><br>
                 <input type="checkbox" name="register[chkCondition]" id="chk">Hereby , I accept terms and conditions
             </div>
-        
+            <?php if(!isset($_GET['userId'])) : ?>
                 <input type="submit" name="submit" value="REGISTER" onclick="validateCheckBox();">
+            <?php else : ?>
+                <input type="hidden" value="<?= $_GET['userId'] ?>" name="userId">
+                <input type="submit" name="updateUser" value="UPDATE USER" onclick="validateCheckBox();">
+            <?php endif; ?>
     </form>
     <script>
         function validateCheckBox() {
@@ -68,6 +78,15 @@
         if($flag == 1){
             echo "Ready to insert";   //write code to preprocess and then insert
             prepareUserData('insert');
+        }else {
+            echo "Error";
+        }
+    }
+    if(isset($_POST['updateUser'])) {
+        if($flag == 1){
+            $editUserId = $_POST['userId'];
+            echo "Ready to update";   //write code to preprocess and then insert
+            prepareUserData('update');
         }else {
             echo "Error";
         }

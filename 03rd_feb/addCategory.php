@@ -16,7 +16,7 @@
     $catList = [];
     function getCatList() {
         global $catList;
-        $result = fetchData("parentCatId,title","parent_category");
+        $result = fetchData("categoryId,title","category");
         if(is_array($result)) {
             foreach($result as $key => $value) {
                 echo "<br>";

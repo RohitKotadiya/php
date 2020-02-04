@@ -1,7 +1,6 @@
 <?php
     require_once "configuration.php";
-
-    session_start();
+    require_once "postBlogData.php";
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         header('location:login.php');
         die();
@@ -11,29 +10,20 @@
         $userName = $result[0]['firstName'];
     }
 
-    function getData() {
-        $postInfo = [];
-        global $connection,$userId;
-        $que = "SELECT P.title,P.publishedAt,C.title as CategoryName FROM blog_post P 
-            LEFT JOIN  post_category PC 
-            ON P.postId = PC.postId   
-            LEFT JOIN category C
-            ON C.categoryId = PC.categoryId where P.userId = $userId";
-         $resultSet = mysqli_query($connection, $que);
-        
-         if(mysqli_num_rows($resultSet) > 0) {
-             while($row = mysqli_fetch_assoc($resultSet)) {
-                 array_push($postInfo, $row);
-             }
-         }else {
-             echo mysqli_error($connection);
-         }
-         return $postInfo;
-     }
-     $postInfo = getData();
     
+     
+    //  $que = "SELECT P.title,P.publishedAt,C.title as CategoryName FROM blog_post P 
+    //  LEFT JOIN  post_category PC 
+    //  ON P.postId = PC.postId   
+    //  LEFT JOIN category C
+    //  ON C.categoryId = PC.categoryId where P.userId = $userId";
+  
+     $que = "SELECT postId,title,publishedAt FROM blog_post where userId = $userId";    
+     $postInfo = getData($que);
+     
+    //  die();
 ?>
-<h1>Hello <?= $userName ?></h2>
+<h3>Welcome <?= $userName ?></h3>
 <br>
 <a href="logout.php"> logout </a><br><br>
 <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
@@ -51,15 +41,23 @@
             <?php foreach(array_keys($postInfo[0]) as $title) : ?>
                 <th><?= $title ?></th>
             <?php endforeach;?>
+            <th>Category Name</th>
             <th colspan="2">Actions</th>
         </tr>
             <?php foreach($postInfo as $singlInfo) : ?>
+                <?php $postId = $singlInfo['postId'];?>
+                    <?php $query = "SELECT C.title FROM  post_category PC LEFT JOIN category C ON 
+                            PC.categoryId = C.categoryId WHERE postId = $postId"; 
+                            $results = getData($query);
+                             ?>
                 <tr>
-                    <?php foreach($singlInfo as $key => $value) : ?>
-                        <td><?= $value ?></td>
-                    <?php endforeach; ?>
-                    <td><a href="addCategory.php?catId=<?=$queryResult['categoryId'] ?>"> edit </a></td>
-                    <td><a href="deleteRecord.php?catId=<?= $queryResult['categoryId'] ?>" >delete </a></td>
+                        <td><?= $singlInfo['postId'] ?></td>
+                        <td><?= $singlInfo['title'] ?></td>
+                        <td><?= $singlInfo['publishedAt'] ?></td>
+                        <td><?php foreach($results as $res) :
+                                echo $res['title']; endforeach; ?></td>
+                    <td><a href="addBlog.php?postId=<?=$singlInfo['postId'] ?>"> edit </a></td>
+                    <td><a href="deleteRecord.php?postId=<?= $singlInfo['postId'] ?>" >delete </a></td>
                 </tr>
             <?php endforeach; ?>
     </table>
