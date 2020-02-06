@@ -1,8 +1,6 @@
 <?php
-    session_start();
+    require_once "postUserData.php";
     $flagUrl = 1;
-    date_default_timezone_set('Asia/kolkata');
-
     function validateURLField($section ,$fieldName) {
          if(isset($_POST[$section][$fieldName])) {
              $fieldValue = $_POST[$section][$fieldName];
@@ -21,9 +19,7 @@
             $flagUrl = 0;
             return  "URL Exisits";
         } 
-    }
-
-     
+    }     
     function prepareBlogData($operation,$section) {
         $cleanBlogData =$cleanCatData = [];
         global $editCatId, $editPostId;
@@ -42,7 +38,7 @@
         }
         $inserted = $updated = 0;
         switch($operation) {
-            case 'insert'   :   if($section == 'addBlg'){
+            case 'insert'   :   if($section == 'addBlg') {
                                     $lastId = insertData($postData, "blog_post");
                                     echo $lastId;
                                     foreach($catData['cat'] as $cat) {
@@ -51,26 +47,20 @@
                                         $inserted = insertData($tmpArr, "post_category");
                                     }
                                     if($inserted != 0) {
-                                        echo "<script> alert('Added Successfully! ');
-                                                    window.location.href='blogPosts.php';
-                                                    </script>";
+                                        echo displayPopup('Added Successfully! ', 'blogPosts.php');
                                     }
                                 }else if($section == 'addCat') {
                                     echo insertData($cleanCatData, "category");
                                     $tmp['title'] = $cleanCatData['title'];
                                     $inserted = insertData($tmp,"parent_category");
                                     if($inserted != 0) {
-                                        echo "<script> alert('Added Successfully! ');
-                                                    window.location.href='blogCategories.php';
-                                                    </script>";
+                                        echo displayPopup('Added Successfully! ', 'blogCategories.php');
                                     }
                                 }
-                                
                                 break;
-            case 'update'   :   if($section == 'addBlg'){
-                                    echo "under update";
+            case 'update'   :   if($section == 'addBlg') {
                                     $postData['updatedAt'] = date('Y-m-d H:i:s', time());
-                                    echo updateRecord("blog_post",$postData,"postId = $editPostId");
+                                    updateRecord("blog_post",$postData,"postId = $editPostId");
                                     foreach($catData['cat'] as $cat) {
                                         $tmpArr['postId'] = $editPostId;
                                         $tmpArr['categoryId'] = $cat;
@@ -78,39 +68,32 @@
                                         $inserted = insertData($tmpArr, "post_category");
                                     }
                                     if($inserted != 0) {
-                                        echo "<script> alert('updated! ');
-                                                window.location.href='blogPosts.php';
-                                                </script>";
+                                        echo displayPopup('Updated !', 'blogPosts.php');
                                     }
                                 }else if($section == 'addCat') {
                                     $updated = updateRecord("category", $cleanCatData,"categoryId = $editCatId");
                                     if($updated == 1) {
-                                        echo "<script> alert('updated! ');
-                                                window.location.href='blogCategories.php';
-                                                </script>";
+                                        echo displayPopup('Updated ! ', 'blogCategories.php');
                                     }
                                 }
                                 break;
-        }
-       
-      
+            }
     }
     function cleanBlogInfo($section) {
-
         $preparedData = [];
         foreach($_POST[$section] as $fieldName => $fieldValue) {
             switch($fieldName) {
-                case 'title'       :   $preparedData['title'] = $fieldValue;
+                case 'title'        :   $preparedData['title'] = $fieldValue;
                                         break;
-                case 'url'         :   $preparedData['url'] = $fieldValue;
+                case 'url'          :   $preparedData['url'] = $fieldValue;
                                         break;
-                case 'content'     :   $preparedData['content'] = $fieldValue;
+                case 'content'      :   $preparedData['content'] = $fieldValue;
                                         break;
                 
-                case 'publishedAt' :   $preparedData['publishedAt'] = $fieldValue;
+                case 'publishedAt'  :   $preparedData['publishedAt'] = $fieldValue;
                                         break;
-                case 'category'    :   if(is_array($fieldValue)) {
-                                            $preparedData['cat'] = implode(",",$fieldValue);
+                case 'category'     :   if(is_array($fieldValue)) {
+                                            $preparedData['cat'] = implode(",", $fieldValue);
                                         }else {
                                             $preparedData['cat'] = $fieldValue;
                                         }
@@ -119,10 +102,7 @@
         }
         $preparedData['createdAt'] = date('Y-m-d H:i:s', time());
         $preparedData['userId'] = $_SESSION['userId'];
-        $uploadDir = 'uploads/';
-        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile); 
-        $preparedData['image'] = $uploadDir . $_FILES['image']['name'];
+        $preparedData['image'] = validateFile('image');
         return $preparedData;
     }
     function cleanCatInfo($section) {
@@ -144,11 +124,8 @@
                                         break;
                 }
         }
-        $preparedData['createdAt'] = date('Y-m-d H:i:s', time());
-        $uploadDir = 'uploads/';
-        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile); 
-        $preparedData['image'] = $uploadDir . $_FILES['image']['name'];
+        $preparedData['createdAt'] = date('Y-m-d H:i:s', time()); 
+        $preparedData['image'] = validateFile('image');
         return $preparedData;
     }
 
@@ -176,5 +153,15 @@
             }
         }
         return $catList;
+    }
+    function validateFile($fieldName) {
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($_FILES[$fieldName]['name']);
+        $acceptTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+        if(in_array($_FILES[$fieldName]['type'], $acceptTypes)) {
+            move_uploaded_file($_FILES[$fieldName]['tmp_name'], $uploadFile);
+            return $uploadDir . $_FILES[$fieldName]['name'];
+        }else
+            echo displayPopup('please enter valid image'); 
     }
 ?>

@@ -1,30 +1,30 @@
 <?php
     require_once "configuration.php";
+    require_once "postUserData.php";
+
     session_start();
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        header('location:login.php');
-        die();
-    }else {
-        $userId = $_SESSION['userId'];
-        $currentUser = fetchData("firstName", "user", "userId = $userId");
-        $userName = $currentUser[0]['firstName'];
-        $result = fetchData("categoryId,image,title,createdAt","category");
-    }
+    checkSession();
+
+    $userId = $_SESSION['userId'];
+    $currentUser = fetchData("firstName", "user", "userId = $userId");
+    $userName = $currentUser[0]['firstName'];
+    $result = fetchData("categoryId,image,title,createdAt","category");
 ?>
-<h3>Welcome <?= $userName ?></h3>
-<br>
-<a href="logout.php"> logout </a><br><br>
-<a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
-<a href="addCategory.php"> Add New Category </a><br><br>
-<a href="blogPosts.php"> Manage Blog Posts </a><br><br>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Customer Information</title>
+    <title>Category Information</title>
 </head>
 <body>
-<h2>BLOG CATEGORY</h2>
+    <h3>Welcome <?= $userName ?></h3>
+    <br>
+    <a href="logout.php"> logout </a><br><br>
+    <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
+    <a href="addCategory.php"> Add New Category </a><br><br>
+    <a href="blogPosts.php"> Manage Blog Posts </a><br><br>
 
+    <h2> BLOG CATEGORY </h2>
     <table border="1">
         <tr>
             <?php foreach(array_keys($result[0]) as $title) : ?>

@@ -3,12 +3,6 @@ label {
     width : 150px;
     margin-bottom: 20px;
 }
-fieldset {
-    padding: 30px;
-    margin-top: 50px;
-    width: 70%;
-    margin-left: 12%;
-}
 input[type="submit"] {
     margin-left: 40%;
     height: 30px;
@@ -22,22 +16,19 @@ input[type="reset"] {
     font-size: 20px;
     margin-top: 20px;
 }
-#specialLbl{
-    vertical-align: 100px;
-}
-#specialLbl2 {
-    vertical-align: 50px;
-}
 #clickCheck {
     margin-left: 180px;
     margin-top: 50px;
     margin-bottom: 50px;
 }
-#other-info {
-    display: none;
-}
 #register {
-    margin-left: 40%;
+    margin-left: 35%;
+}
+#addBlg {
+    margin-left: 35%;
+}
+#addCat {
+    margin-left: 35%;
 }
 h2 {
     text-align: center;

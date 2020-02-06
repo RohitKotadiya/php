@@ -1,22 +1,14 @@
 <?php
     require_once "configuration.php";
     require_once "postBlogData.php";
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        header('location:login.php');
-        die();
-    }else {
-        $userId = $_SESSION['userId'];
-        $result = fetchData("firstName", "user", "userId = $userId");
-        $userName = $result[0]['firstName'];
-    }
-     $postInfo = fetchData("postId,title,publishedAt","blog_post", "userId = $userId");
+    require_once "postUserData.php";
+    session_start();
+    checkSession();
+    $userId = $_SESSION['userId'];
+    $result = fetchData("firstName", "user", "userId = $userId");
+    $userName = $result[0]['firstName'];
+    $postInfo = fetchData("postId,title,publishedAt","blog_post", "userId = $userId");
 ?>
-<h3>Welcome <?= $userName ?></h3>
-<br>
-<a href="logout.php"> logout </a><br><br>
-<a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
-<a href="addBlog.php"> Add New Blog Post </a><br><br>
-<a href="blogCategories.php"> Manage Category </a><br><br>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +16,13 @@
     <title>Post Information</title>
 </head>
 <body>
+    <h3>Welcome <?= $userName ?></h3>
+    <br>
+    <a href="logout.php"> logout </a><br><br>
+    <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
+    <a href="addBlog.php"> Add New Blog Post </a><br><br>
+    <a href="blogCategories.php"> Manage Category </a><br><br>
+
     <h2>BLOG POSTS</h2>
     <?php if(!empty($postInfo)) : ?>
     <table border="1">
