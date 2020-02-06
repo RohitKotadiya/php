@@ -15,15 +15,17 @@
 <html lang="en">
 <head>
     <title>Category Information</title>
+    <link rel="stylesheet" type="text/css" href="css/blogPost_blogCat.css">
 </head>
 <body>
     <h3>Welcome <?= $userName ?></h3>
     <br>
-    <a href="logout.php"> logout </a><br><br>
-    <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
-    <a href="addCategory.php"> Add New Category </a><br><br>
-    <a href="blogPosts.php"> Manage Blog Posts </a><br><br>
-
+    <ul>
+        <li><a href="logout.php"> logout </a></li>
+        <li><a href="register.php?userId=<?= $userId ?>"> My Profile </a></li>
+        <li><a href="addCategory.php"> Add New Category </a></li>
+        <li><a href="blogPosts.php"> Manage Blog Posts </a></li>
+    </ul>
     <h2> BLOG CATEGORY </h2>
     <table border="1">
         <tr>

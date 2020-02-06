@@ -5,8 +5,9 @@
     session_start();
     checkSession();
     $userId = $_SESSION['userId'];
-    $result = fetchData("firstName", "user", "userId = $userId");
+    $result = fetchData("firstName, lastLoginAt", "user", "userId = $userId");
     $userName = $result[0]['firstName'];
+    $lastLogin = $result[0]['lastLoginAt'];
     $postInfo = fetchData("postId,title,publishedAt","blog_post", "userId = $userId");
 ?>
 
@@ -14,15 +15,18 @@
 <html lang="en">
 <head>
     <title>Post Information</title>
+    <link rel="stylesheet" type="text/css" href="css/blogPost_blogCat.css">
 </head>
 <body>
     <h3>Welcome <?= $userName ?></h3>
+    <h5>Last Logged in : <?= $lastLogin ?></h5>
     <br>
-    <a href="logout.php"> logout </a><br><br>
-    <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
-    <a href="addBlog.php"> Add New Blog Post </a><br><br>
-    <a href="blogCategories.php"> Manage Category </a><br><br>
-    
+    <ul>
+        <li><a href="logout.php"> logout </a></li>
+        <li><a href="register.php?userId=<?= $userId ?>"> My Profile </a></li>
+        <li><a href="addBlog.php"> Add New Blog Post </a></li>
+        <li><a href="blogCategories.php"> Manage Category </a></li>
+    </ul>
     <h2>BLOG POSTS</h2>
     <?php if(!empty($postInfo)) : ?>
     <table border="1">

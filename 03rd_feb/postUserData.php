@@ -4,11 +4,16 @@
     date_default_timezone_set('Asia/kolkata'); //to set time zone
     function getFieldValue($section, $fieldName, $returnType = "") {
         global $catData, $blogData, $userData;
-        
-        return (isset($_POST[$section][$fieldName]) ? $_POST[$section][$fieldName] : $returnType );
-        return (!empty($catData[$section][$fieldName]) ? $catData[$section][$fieldName] : $returnType );
-        return (!empty($blogData[$section][$fieldName]) ? $blogData[$section][$fieldName] : $returnType );
-        return (!empty($userData[$section][$fieldName]) ? $userData[$section][$fieldName] : $returnType );
+        if(isset($_POST[$section][$fieldName]))
+            return $_POST[$section][$fieldName];
+        else if(!empty($userData[$section][$fieldName]))
+            return $userData[$section][$fieldName];
+        else if(!empty($catData[$section][$fieldName]))
+            return $catData[$section][$fieldName];
+        else if(!empty($blogData[$section][$fieldName]))
+            return $blogData[$section][$fieldName];
+        else 
+            return $returnType;
     }
     function validateField($section,$fieldName) {
         global $flag;
