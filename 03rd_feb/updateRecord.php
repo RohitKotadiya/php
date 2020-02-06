@@ -11,7 +11,6 @@ require_once "postBlogData.php";
         $query = "SELECT C.categoryId FROM  post_category PC LEFT JOIN category C ON 
                             PC.categoryId = C.categoryId WHERE postId = $postId";
         $results = getData($query);         //from postBlogData
-        // print_r($results);
         $data =[];
         $postInfo = fetchData("*", "blog_post","postId = $postId");
         $data['addBlg'] = $postInfo[0];

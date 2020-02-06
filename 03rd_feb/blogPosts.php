@@ -22,7 +22,7 @@
     <a href="register.php?userId=<?= $userId ?>"> My Profile </a><br><br>
     <a href="addBlog.php"> Add New Blog Post </a><br><br>
     <a href="blogCategories.php"> Manage Category </a><br><br>
-
+    
     <h2>BLOG POSTS</h2>
     <?php if(!empty($postInfo)) : ?>
     <table border="1">
