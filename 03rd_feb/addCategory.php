@@ -27,12 +27,12 @@
         <label> Content </label>
         <input type="text" name="addCat[content]" value="<?= getFieldValue('addCat', 'content') ?>" required ><br><br>
         <label>URL  </label> 
-        <input type="text" name="addCat[url]"  value="<?= getFieldValue('addCat', 'url') ?>" required  >
-        <span> <?= validateURLField('addCat','url') ?> </span><br><br>
+        <input type="text" name="addCat[url]"  value="<?= getFieldValue('addCat', 'url') ?>" required  ><br><br>
         <label>Meta Title  </label> 
         <input type="text" name="addCat[metaTitle]" value="<?= getFieldValue('addCat', 'metaTitle') ?>" required ><br><br>
         <label>Parent Category  </label> 
-        <select name="addCat[cat]" required >
+        <select name="addCat[cat]">
+            <option selected value="NULL">None</option>
             <?php $catList = getCatList(); ?>    
                 <?php foreach($catList as $cat) : ?>
                     <?php $selectedCat = array_intersect(getFieldValue('addCat', 'cat'),[$cat['categoryId']] ) ? "selected" : "" ?>

@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>login</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>

@@ -28,8 +28,7 @@
             <label> Content </label>
             <input type="text" name="addBlg[content]" value="<?= getFieldValue('addBlg', 'content') ?>" required><br><br>
             <label> URL </label> 
-            <input type="text" name="addBlg[url]"  value="<?= getFieldValue('addBlg', 'url') ?>" required>
-            <span> <?= validateURLField('addBlg', 'url') ?> </span><br><br>
+            <input type="text" name="addBlg[url]"  value="<?= getFieldValue('addBlg', 'url') ?>" required><br><br>
             <label> published At </label> 
             <input type="date" name="addBlg[publishedAt]" value="<?= getFieldValue('addBlg', 'publishedAt') ?>" required><br><br>
             <label> Category </label> 

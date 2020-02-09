@@ -54,7 +54,6 @@
         $inserted = $updated = 0;
         $cleanData = prepareAccountData('register');
         $exists = userExist($cleanData['emailAddress']);
-        echo $exists;
         switch($operation) {
             case 'insert'   :   if($exists == 1)
                                     $inserted = insertData($cleanData, "user");
@@ -96,7 +95,7 @@
         return $preparedData;
     }
     function userExist($email) {
-        $allUser = fetchData("emailAddress", "user");
+        $allUser = fetchData("emailAddress", "user", "emailAddress = '$email'");
         if(is_array($allUser)) {
             return 0;
         }else {

@@ -1,25 +1,6 @@
 <?php
     require_once "postUserData.php";
-    $flagUrl = 1;
-    function validateURLField($section ,$fieldName) {
-         if(isset($_POST[$section][$fieldName])) {
-             $fieldValue = $_POST[$section][$fieldName];
-            if($section == 'addBlg') {
-                return getUrl('blog_post',$fieldValue);
-            }
-            if($section == 'addCat') {
-                return getUrl('category',$fieldValue);
-            }
-        }
-    }
-    function getUrl($tableName, $fieldValue) {
-        global $flagUrl;
-        $allUrl = fetchData("url", "$tableName" , "url = '$fieldValue'");
-        if(is_array($allUrl)) {
-            $flagUrl = 0;
-            return  "URL Exisits";
-        } 
-    }     
+    $flagUrl = 1;  
     function prepareBlogData($operation,$section) {
         $cleanBlogData =$cleanCatData = [];
         global $editCatId, $editPostId;
@@ -39,22 +20,30 @@
         $inserted = $updated = 0;
         switch($operation) {
             case 'insert'   :   if($section == 'addBlg') {
-                                    $lastId = insertData($postData, "blog_post");
-                                    echo $lastId;
-                                    foreach($catData['cat'] as $cat) {
-                                        $tmpArr['postId'] = $lastId;
-                                        $tmpArr['categoryId'] = $cat; 
-                                        $inserted = insertData($tmpArr, "post_category");
-                                    }
-                                    if($inserted != 0) {
-                                        echo displayPopup('Added Successfully! ', 'blogPosts.php');
+                                    $urlExist  = validateURLField($section,$postData['url']);
+                                    if($urlExist == 0) {
+                                        $lastId = insertData($postData, "blog_post");
+                                        echo $lastId;
+                                        foreach($catData['cat'] as $cat) {
+                                            $tmpArr['postId'] = $lastId;
+                                            $tmpArr['categoryId'] = $cat; 
+                                            $inserted = insertData($tmpArr, "post_category");
+                                        }
+                                        if($inserted != 0) {
+                                            echo displayPopup('Added Successfully! ', 'blogPosts.php');
+                                        }
+                                    }else {
+                                        echo displayPopup('url Exisits! ');
                                     }
                                 }else if($section == 'addCat') {
-                                    echo insertData($cleanCatData, "category");
-                                    $tmp['title'] = $cleanCatData['title'];
-                                    $inserted = insertData($tmp,"parent_category");
-                                    if($inserted != 0) {
-                                        echo displayPopup('Added Successfully! ', 'blogCategories.php');
+                                    $urlExist  = validateURLField($section,$cleanCatData['url']);
+                                    if($urlExist == 0) {
+                                        $inserted = insertData($cleanCatData, "child_parent_cat");
+                                        if($inserted != 0) {
+                                            echo displayPopup('Added Successfully! ', 'blogCategories.php');
+                                        }
+                                    }else {
+                                        echo displayPopup('url Exisits! ');
                                     }
                                 }
                                 break;
@@ -71,7 +60,7 @@
                                         echo displayPopup('Updated !', 'blogPosts.php');
                                     }
                                 }else if($section == 'addCat') {
-                                    $updated = updateRecord("category", $cleanCatData,"categoryId = $editCatId");
+                                    $updated = updateRecord("child_parent_cat", $cleanCatData,"categoryId = $editCatId");
                                     if($updated == 1) {
                                         echo displayPopup('Updated ! ', 'blogCategories.php');
                                     }
@@ -146,7 +135,7 @@
 
     function getCatList() {
         $catList = [];
-        $result = fetchData("categoryId,title","category");
+        $result = fetchData("categoryId,title","child_parent_cat");
         if(is_array($result)) {
             foreach($result as $key => $value) {
                 array_push($catList,$value);
@@ -164,4 +153,20 @@
         }else
             echo displayPopup('please enter valid image'); 
     }
+    function validateURLField($section,$fieldValue) { 
+        if($section == 'addBlg') {
+            return getUrl('blog_post',$fieldValue);
+        }
+        else if($section == 'addCat') {
+            return getUrl('child_parent_cat',$fieldValue);
+        }
+   }
+   function getUrl($tableName, $fieldValue) {
+    $allUrl = fetchData("url", "$tableName" , "url = '$fieldValue'");
+    if(is_array($allUrl)) {
+        return 1;
+    }else {
+        return 0;
+    } 
+}   
 ?>

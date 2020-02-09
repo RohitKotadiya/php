@@ -5,8 +5,12 @@
 
     if(isset($_GET['catId'])) {
         $catId = $_GET['catId'];
-        $deleted = deleteRecord("category", "categoryId = $catId");
-        $deleted = deleteRecord("post_category", "categoryId = $catId");
+        $posts = fetchData("postId","post_category", "categoryId = $catId");
+        foreach($posts as $post) {
+            $postId = $post['postId'];
+            echo deleteRecord("blog_post", "postId = $postId");
+        }
+        $deleted = deleteRecord("child_parent_cat", "categoryId = $catId");
         if($deleted == 1) {
             echo displayPopup('deleted! ', 'blogCategories.php');
         }else {

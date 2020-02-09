@@ -8,7 +8,7 @@
     $userId = $_SESSION['userId'];
     $currentUser = fetchData("firstName", "user", "userId = $userId");
     $userName = $currentUser[0]['firstName'];
-    $result = fetchData("categoryId,image,title,createdAt","category");
+    $result = fetchData("categoryId,image,title,createdAt","child_parent_cat");
 ?>
 
 <!DOCTYPE html>

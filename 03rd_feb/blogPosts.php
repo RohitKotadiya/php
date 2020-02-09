@@ -8,7 +8,23 @@
     $result = fetchData("firstName, lastLoginAt", "user", "userId = $userId");
     $userName = $result[0]['firstName'];
     $lastLogin = $result[0]['lastLoginAt'];
-    $postInfo = fetchData("postId,title,publishedAt","blog_post", "userId = $userId");
+    // $postInfo = fetchData("postId,title,publishedAt","blog_post", "userId = $userId");
+    $joinQuery = "SELECT
+                        B.postId,
+                        GROUP_CONCAT(C.title) CategoryName,
+                        B.title AS Title,
+                        B.publishedAt AS Published_Date
+                    FROM
+                        blog_post B 
+                    LEFT JOIN
+                        post_category PC ON 
+                        B.postId = PC.postId
+                    LEFT JOIN
+                        child_parent_cat C ON
+                        PC.categoryId = C.categoryId
+                    WHERE B.userId = $userId
+                    GROUP BY PC.postId";
+    $postInfo = getData($joinQuery);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +35,9 @@
 </head>
 <body>
     <h3>Welcome <?= $userName ?></h3>
-    <h5>Last Logged in : <?= $lastLogin ?></h5>
+    <?php if($lastLogin != null) : ?>
+    <h5>Last Logged in : <?= date('M,D,Y h:i:s A' , strtotime($lastLogin))  ?></h5>
+    <?php endif; ?>
     <br>
     <ul>
         <li><a href="logout.php"> logout </a></li>
@@ -28,31 +46,20 @@
         <li><a href="blogCategories.php"> Manage Category </a></li>
     </ul>
     <h2>BLOG POSTS</h2>
-    <?php if(!empty($postInfo)) : ?>
+    <?php if(is_array($postInfo) && !empty($postInfo)) : ?>
     <table border="1">
         <tr>
             <?php foreach(array_keys($postInfo[0]) as $title) : ?>
                 <th><?= $title ?></th>
             <?php endforeach;?>
-            <th>Category Name</th>
             <th colspan="2">Actions</th>
         </tr>
             <?php foreach($postInfo as $singlInfo) : ?>
-                <?php $postId = $singlInfo['postId'];?>
-                    <?php $query = "SELECT C.title FROM  post_category PC LEFT JOIN category C ON 
-                            PC.categoryId = C.categoryId WHERE postId = $postId"; 
-                            $results = getData($query);
-                            $arr = [];
-                    ?>
-                    <?php foreach($results as $res) :
-                                array_push($arr,$res['title']); 
-                                endforeach; 
-                    ?>
                 <tr>
-                        <td><?= $singlInfo['postId'] ?></td>
-                        <td><?= $singlInfo['title'] ?></td>
-                        <td><?= $singlInfo['publishedAt'] ?></td>
-                        <td><?= implode(",", $arr) ?></td>
+                    <td><?= $singlInfo['postId'] ?></td>
+                    <td><?= $singlInfo['CategoryName'] ?></td>
+                    <td><?= $singlInfo['Title'] ?></td>
+                    <td><?= $singlInfo['Published_Date'] ?></td>
                     <td><a href="addBlog.php?postId=<?=$singlInfo['postId'] ?>"> edit </a></td>
                     <td><a href="deleteRecord.php?postId=<?= $singlInfo['postId'] ?>" >delete </a></td>
                 </tr>

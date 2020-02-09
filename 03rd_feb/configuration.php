@@ -5,23 +5,33 @@
     function insertData($data, $tableName) {
         global $connection;
         $tablefields = implode(",", array_keys($data));
-        $tableValues = "'" . implode("','", array_values($data)) . "'";
-
+        $tableValues = [];
+        foreach(array_values($data) as $value) {
+            if($value != 'NULL') {
+                $tableValues[] = "'" . $value . "'";
+            }else {
+                $tableValues[] = $value; 
+            }
+        }
+        $tableValues = implode(",", $tableValues);
         $insertQuery = "insert into $tableName ($tablefields) values ($tableValues)";
-        // echo "<br>" . $insertQuery;
+        echo "<br>" . $insertQuery;
         return (mysqli_query($connection, $insertQuery) == 1 ) ? mysqli_insert_id($connection) : mysqli_error($connection);
     } 
     function deleteRecord($tableName, $condition) {
         global $connection;
         $deleteQuery = "delete from $tableName where $condition";
-        // echo "$deleteQuery";
+        echo "$deleteQuery";
         return (mysqli_query($connection, $deleteQuery) == 1 ) ? 1 : mysqli_error($connection);
     }
     function updateRecord($tableName, $data, $condition ="") {
         global $connection;
         $tempArr = [];
         foreach($data as $key => $value) {
-            $tempArr[] = $key . "=" . "'$value'"; 
+            if($value != 'NULL')
+                $tempArr[] = $key . "=" . "'$value'"; 
+            else 
+                $tempArr[] = $key . "=" . "$value"; 
         }
         $fieldValue = implode(",", $tempArr);
         $updateQuery = (func_num_args() == 3 ) 
