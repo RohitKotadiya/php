@@ -2,6 +2,7 @@
 	
 	// require_once '../Core/Router.php';
 	// require_once '../App/Controllers/Posts.php';   // replaced with below spl_autoloader
+	require_once '../vendor/autoload.php';
 
 	spl_autoload_register(function ($class) {
 		$root = dirname(__DIR__);  //parent dir

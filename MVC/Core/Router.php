@@ -44,7 +44,7 @@ class Router {
 					$controllerObj->$action();
 				}else {	
 					echo "$action method not found in class $controller";
-				}
+				}		
 			}else {
 				echo "$controller class not found!";
 			}

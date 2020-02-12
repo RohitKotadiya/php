@@ -11,7 +11,9 @@ class Home extends \Core\BaseController {
                     'designation' => 'Magento Developer',
                     'company' => 'Cybercom Creation'
                     ];
-        View::renderView('Home/homeIndex.php', $userData);
+        // View::renderView('Home/homeIndex.php', $userData); //replced with below line after adding Twig
+        View::renderTemplate('Home/homeIndex.html', $userData);
+
     }
     protected function after() {    // why this two here and in controller also
         echo " (After) <br> ";

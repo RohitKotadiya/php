@@ -10,5 +10,8 @@
     <h2> About <?php echo $firstName; ?> </h2>
     Designation : <?php echo $designation ?> <br>
     Company : <?php echo $company ?> <br>
+    <br><br>
+    <a href=""> Home </a>
+    <a href="posts/index"> Posts </a>
 </body>
 </html>

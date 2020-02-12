@@ -11,7 +11,7 @@ abstract class BaseController {    //abstract bcaz will not create obj directly 
 
     public function __call($methodName, $args) {   // to call unaccsible methods 
                                                     // also used to call before and after of each action -
-                                        // before/after for chk session, lang chang 
+                                                   // before/after for chk session, lang chang 
         $methodName = $methodName . 'Action';
         if(method_exists($this, $methodName)) {
             if($this->before() !== false) {
