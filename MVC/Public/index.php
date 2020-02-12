@@ -29,7 +29,7 @@
 	// echo htmlspecialchars(print_r($router->getRoutes(),true));
 
 	$url = $_SERVER['QUERY_STRING'];
-	echo "URL : " . $url . "<br><br>";
+	// echo "URL : " . $url . "<br><br>";
 	// echo "class : " . get_class($router);
 	
 	

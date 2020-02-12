@@ -32,7 +32,7 @@ class Router {
 			// $controller = "App\Controllers\\$controller";   //replced with below line after adding subdirectories in 
 																// Controllers to manage dynamically
 			$controller = $this->getNamespace() . $controller;
-			echo "Controller name : $controller <br><br>";
+			// echo "Controller name : $controller <br><br>";
 
 			if(class_exists($controller)) {
 				// $controllerObj =new $controller(); // replaced with below line after adding BaseController

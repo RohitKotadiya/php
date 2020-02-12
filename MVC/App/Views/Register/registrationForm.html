@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Registration Form {% endblock %}
+
+{% block body %}
+    <form action="addUser" method="POST">
+        <div id="register">
+            <div class="firstName">
+                First Name : <input type="text" name="register[firstName]">
+                <!-- <span>{{ validateField('register','firstName') }}</span> -->
+            </div>
+            <div class="email">
+                Email : <input type="email" name="register[emailId]">
+            </div>
+            <div class="password">
+                Password : <input type="password" name="register[pass]">
+            </div>
+            <div class="confirmPass">
+                Confirm Password : <input type="password" name="register[confirmPass]"> 
+            </div>
+            <div class="submit">
+                <input type="submit" value="REGISTER" name="submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}
