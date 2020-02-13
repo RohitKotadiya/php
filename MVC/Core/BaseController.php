@@ -19,7 +19,7 @@ abstract class BaseController {    //abstract bcaz will not create obj directly 
                 $this->after();
             }
         }else {
-            echo "$methodName not found in class " . get_class($this);
+            throw new \Exception("$methodName not found in class " . get_class($this));
         }
     }
     protected function before() { // why this two here and in Home also

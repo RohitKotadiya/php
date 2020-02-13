@@ -1,0 +1,21 @@
+[13-Feb-2020 06:47:13 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('kkk')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 07:10:19 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('kkk')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 07:13:49 Europe/Berlin] Uncaught Exception : 'PDOException'with Message : 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ecom_mvc.blog_post' doesn't exist'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php(10): PDO->query('SELECT * FROM b...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Posts.php(12): App\Models\Post::getData()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\cybercom\php\MVC\Core\BaseController.php(18): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): Core\BaseController->__call('indexAction', Array)
+#5 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/index')
+#6 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php 'on line 10</p>
+[13-Feb-2020 07:38:37 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('po')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>

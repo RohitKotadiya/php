@@ -1,21 +1,18 @@
 <?php
 namespace Core;
 use PDO;
+use \App\Config;
 
 abstract class Model {
     protected static function getDB(){
         static $db = null;
         if($db == null) {
-            $host = "localhost:3307";
-            $userName = "root";
-            $dbName = "ecom_mvc";
-            $password = "";
-            try {
-                $db = new PDO("mysql:host=$host;dbname=$dbName;charset=utf8",$userName,$password);
-                return $db;
-            } catch(PDOException $e) {
-                echo $e->getMessage();
-            }
+            $db = new PDO("mysql:host=" . Config::DB_HOST . ";dbname=" . Config::DB_NAME . ";charset=utf8",
+                            Config::DB_USER ,Config::DB_PASSWORD);
+            
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            return $db;
         }
     }
     public function insertData($tableName , $data) {

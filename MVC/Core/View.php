@@ -9,7 +9,7 @@ class View {
         if(is_readable($file)) {
             require_once $file;
         }else {
-            echo "$file not found!";
+            throw new \Exception("$file not found!");
         }
     }
     public static function renderTemplate($template, $args = []) {

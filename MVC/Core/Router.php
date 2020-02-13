@@ -43,13 +43,13 @@ class Router {
 				if(is_callable([$controllerObj, $action])) {
 					$controllerObj->$action();
 				}else {	
-					echo "$action method not found in class $controller";
+					throw new \Exception("$action method not found in class $controller");
 				}		
 			}else {
-				echo "$controller class not found!";
+				throw new \Exception("$controller class not found!");
 			}
 		}else {
-			echo "Route Not Found!";
+			throw new \Exception("Route Not Found!", 404);
 		}
 	}
 	public function matchUrl($url) {
