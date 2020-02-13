@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %} Registration Form {% endblock %}
+
+{% if edit == 'edit'  %}
+    {% set btnValue = 'UPDATE' %}
+    {% set actionValue = 'updateUser' %}
+{% else %}
+    {% set btnValue = 'REGISTER' %}
+    {% set actionValue = 'addUser' %}
+{% endif %}
 {% block body %}
-    <form action="addUser" method="POST">
+    <br><br>
+    <form action="{{ actionValue }}" method="POST">
         <div id="register">
             <div class="firstName">
                 First Name : <input type="text" name="register[firstName]" value="{{ postData.firstName }}">
@@ -17,10 +26,10 @@
             </div>
             <div class="confirmPass">
                 Confirm Password : <input type="password" name="register[confirmPass]"> 
-                <span>{{ confirmPass }}</span>
+                <span>{{ errList.confirmPass }}</span>
             </div>
             <div class="submit">
-                <input type="submit" value="REGISTER" name="submit">
+                <input type="submit" value="{{ btnValue }}" name="submit">
             </div>
         </div>
     </form>

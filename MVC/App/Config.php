@@ -11,7 +11,7 @@ class Config {
 
     const DB_PASSWORD = '';
     
-    const SHOW_ERRORS = false;
+    const SHOW_ERRORS = true;
 }
 
 

@@ -19,3 +19,392 @@
  Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('po')
 #1 {main}
  Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:12:36 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('po')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:46:21 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:46:24 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:46:46 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:46:49 Europe/Berlin] Uncaught Exception : 'PDOException'with Message : 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ecom_mvc.blog_post' doesn't exist'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php(10): PDO->query('SELECT * FROM b...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Posts.php(12): App\Models\Post::getData()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\cybercom\php\MVC\Core\BaseController.php(18): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): Core\BaseController->__call('indexAction', Array)
+#5 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/index')
+#6 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php 'on line 10</p>
+[13-Feb-2020 10:46:52 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:46:53 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:00 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:02 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:02 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:03 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:04 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:05 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:05 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:05 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:05 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:06 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:07 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:47:09 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/posts/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:03 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('..Register/show...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:09 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('..Register/show...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:12 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('..Register/show...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:30 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:37 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:39 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:40 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:40 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:40 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:40 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:41 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:48:41 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:49:02 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:49:10 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:49:14 Europe/Berlin] Uncaught Exception : 'PDOException'with Message : 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ecom_mvc.blog_post' doesn't exist'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php(10): PDO->query('SELECT * FROM b...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Posts.php(12): App\Models\Post::getData()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\cybercom\php\MVC\Core\BaseController.php(18): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): Core\BaseController->__call('indexAction', Array)
+#5 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/index')
+#6 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php 'on line 10</p>
+[13-Feb-2020 10:49:15 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/Register/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:49:32 Europe/Berlin] Uncaught Exception : 'PDOException'with Message : 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ecom_mvc.blog_post' doesn't exist'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php(10): PDO->query('SELECT * FROM b...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Posts.php(12): App\Models\Post::getData()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\cybercom\php\MVC\Core\BaseController.php(18): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): Core\BaseController->__call('indexAction', Array)
+#5 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/index')
+#6 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Models\Post.php 'on line 10</p>
+[13-Feb-2020 10:49:34 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/Register/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:51:34 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/Register/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:51:37 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('posts/Register/...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:51:45 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:52:11 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:52:13 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:52:15 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:52:59 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:00 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:03 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:14 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:26 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:26 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:27 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:34 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:40 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:42 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:53:43 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:54:27 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:56:10 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:56:46 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:56:49 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:57:07 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:57:12 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Public/R...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:57:28 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:57:47 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Public/Register...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:57:51 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 10:58:04 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 11:02:50 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 11:03:04 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 11:04:25 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'editUserAction not found in class App\Controllers\Register'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): Core\BaseController->__call('editUserAction', Array)
+#1 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/1/edit...')
+#2 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\BaseController.php 'on line 22</p>
+[13-Feb-2020 11:11:56 Europe/Berlin] Uncaught Exception : 'Error'with Message : 'Access to undeclared static property: Core\BaseController::$routeParams'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#1 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/3/edit...')
+#2 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php 'on line 31</p>
+[13-Feb-2020 11:12:30 Europe/Berlin] Uncaught Exception : 'Error'with Message : 'Access to undeclared static property: Core\BaseController::$routeParams'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#1 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/3/edit...')
+#2 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php 'on line 32</p>
+[13-Feb-2020 11:12:50 Europe/Berlin] Uncaught Exception : 'Error'with Message : 'Access to undeclared static property: Core\BaseController::$routeParams'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#1 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/3/edit...')
+#2 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php 'on line 31</p>
+[13-Feb-2020 11:13:03 Europe/Berlin] Uncaught Exception : 'Error'with Message : 'Access to undeclared static property: Core\BaseController::$routeParams'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#1 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/3/edit...')
+#2 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php 'on line 31</p>
+[13-Feb-2020 11:13:08 Europe/Berlin] Uncaught Exception : 'Error'with Message : 'Access to undeclared static property: Core\BaseController::$routeParams'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#1 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/4/edit...')
+#2 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php 'on line 31</p>
+[13-Feb-2020 11:13:19 Europe/Berlin] Uncaught Exception : 'PDOException'with Message : 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Model.php(43): PDO->query('select * from u...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\App\Models\User.php(14): Core\Model::fetchData('*', 'user', 'userId = ')
+#2 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php(33): App\Models\User::getSingleUser(NULL)
+#3 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#4 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/4/edit...')
+#5 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Model.php 'on line 43</p>
+[13-Feb-2020 11:13:40 Europe/Berlin] Uncaught Exception : 'PDOException'with Message : 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Model.php(43): PDO->query('select * from u...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\App\Models\User.php(14): Core\Model::fetchData('*', 'user', 'userId = ')
+#2 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php(34): App\Models\User::getSingleUser(NULL)
+#3 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#4 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/4/edit...')
+#5 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Model.php 'on line 43</p>
+[13-Feb-2020 11:14:08 Europe/Berlin] Uncaught Exception : 'PDOException'with Message : 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Core\Model.php(43): PDO->query('select * from u...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\App\Models\User.php(14): Core\Model::fetchData('*', 'user', 'userId = ')
+#2 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php(34): App\Models\User::getSingleUser(NULL)
+#3 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->editUser()
+#4 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/4/edit...')
+#5 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Model.php 'on line 43</p>
+[13-Feb-2020 11:15:49 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/4/Regi...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 11:26:19 Europe/Berlin] Uncaught Exception : 'Twig\Error\SyntaxError'with Message : 'Only variables can be assigned to. Unexpected token "end of statement block" ("name" expected).'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\ExpressionParser.php(638): Twig\TokenStream->expect(5, NULL, 'Only variables ...')
+#1 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\TokenParser\SetTokenParser.php(35): Twig\ExpressionParser->parseAssignmentExpression()
+#2 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Parser.php(182): Twig\TokenParser\SetTokenParser->parse(Object(Twig\Token))
+#3 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\TokenParser\IfTokenParser.php(39): Twig\Parser->subparse(Array)
+#4 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Parser.php(182): Twig\TokenParser\IfTokenParser->parse(Object(Twig\Token))
+#5 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Parser.php(95): Twig\Parser->subparse(NULL, false)
+#6 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#7 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#8 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#9 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Register/regist...')
+#10 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Register/regist...')
+#11 C:\xampp\htdocs\cybercom\php\MVC\Core\View.php(21): Twig\Environment->render('Register/regist...', Array)
+#12 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php(11): Core\View::renderTemplate('Register/regist...')
+#13 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->registerForm()
+#14 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#15 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Views\Register\registrationForm.html 'on line 7</p>
+[13-Feb-2020 11:28:28 Europe/Berlin] Uncaught Exception : 'Exception'with Message : 'Route Not Found!'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/Regist...')
+#1 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php 'on line 52</p>
+[13-Feb-2020 11:28:32 Europe/Berlin] Uncaught Exception : 'Twig\Error\SyntaxError'with Message : 'Unexpected end of template.'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\TokenParser\IfTokenParser.php(45): Twig\TokenStream->next()
+#1 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Parser.php(182): Twig\TokenParser\IfTokenParser->parse(Object(Twig\Token))
+#2 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Parser.php(95): Twig\Parser->subparse(NULL, false)
+#3 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#5 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#6 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Register/regist...')
+#7 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Register/regist...')
+#8 C:\xampp\htdocs\cybercom\php\MVC\Core\View.php(21): Twig\Environment->render('Register/regist...', Array)
+#9 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php(11): Core\View::renderTemplate('Register/regist...')
+#10 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->registerForm()
+#11 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#12 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Views\Register\registrationForm.html 'on line 35</p>
+[13-Feb-2020 11:28:47 Europe/Berlin] Uncaught Exception : 'Twig\Error\SyntaxError'with Message : 'Unexpected end of template.'
+ Stack Trace :#0 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\TokenParser\IfTokenParser.php(45): Twig\TokenStream->next()
+#1 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Parser.php(182): Twig\TokenParser\IfTokenParser->parse(Object(Twig\Token))
+#2 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Parser.php(95): Twig\Parser->subparse(NULL, false)
+#3 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#5 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#6 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Register/regist...')
+#7 C:\xampp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Register/regist...')
+#8 C:\xampp\htdocs\cybercom\php\MVC\Core\View.php(21): Twig\Environment->render('Register/regist...', Array)
+#9 C:\xampp\htdocs\cybercom\php\MVC\App\Controllers\Register.php(11): Core\View::renderTemplate('Register/regist...')
+#10 C:\xampp\htdocs\cybercom\php\MVC\Core\Router.php(44): App\Controllers\Register->registerForm()
+#11 C:\xampp\htdocs\cybercom\php\MVC\Public\index.php(46): Core\Router->dispatch('Register/regist...')
+#12 {main}
+ Thrown in : 'C:\xampp\htdocs\cybercom\php\MVC\App\Views\Register\registrationForm.html 'on line 35</p>
