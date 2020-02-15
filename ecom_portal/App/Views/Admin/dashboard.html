@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %} Dashboard {% endblock %} </title>
+    <style>
+        span {
+            color: red;
+        }
+        nav a {
+            padding: 15px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/"> Home </a> 
+        <a href="/cybercom/php/ecom_portal/Public/Admin/Products"> Manage Products </a> 
+        <a href="/cybercom/php/ecom_portal/Public/Admin/"> Manage Categories </a>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/"> Manage CMS </a>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/login"> Logout </a> 
+    </nav>
+    <br>
+    <h1> Welcome Admin</h1>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

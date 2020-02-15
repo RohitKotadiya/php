@@ -1,0 +1,74 @@
+{% extends "Admin/dashboard.html" %}
+
+{% block title %} Add Product {% endblock %}
+
+{% if edit == 'edit'  %}
+    {% set btnValue = 'UPDATE' %}
+    {% set actionValue = 'updateProduct' %}
+{% else %}
+    {% set btnValue = 'ADD PRODUCT' %}
+    {% set actionValue = 'addProduct' %}
+{% endif %}
+{% block body %}
+    <br>       
+    <a href="/cybercom/php/ecom_portal/Public/Admin/Products"> BACK </a>
+    <br>
+    <br>
+    <form action="{{ actionValue }}" method="POST" enctype="multipart/form-data">
+        <div id="product">
+            <div class="productName">
+                <label>Product Name </label>
+                <input type="text" name="product[productName]" value="{{ productData.productName }}">
+                <span>{{ errList.productName }}</span>
+            </div>
+            <div class="productDesc">
+                <label> Description </label>
+                <input type="text" name="product[productDesc]" value="{{ productData.productDesc}}">
+            </div>
+            <div class="shortDesc">
+                <label> Short Description </label>
+                <input type="text" name="product[shortDesc]" value="{{ productData.shortDesc}}">
+            </div>
+            <div class="price">
+                <label for="">Price</label>
+                <input type="text" name="product[price]" value="{{ productData.price }}">
+            </div>
+            <div class="stock">
+                <label for="">Stock</label>
+                <input type="text" name="product[stock]" value="{{ productData.stock }}">
+                <span>{{ errList.stock }}</span>
+            </div>
+            <div class="productImage">
+                <label for="">Image</label>
+                <input type="file" name="productImage" accept="image/*">
+                <span>{{ errList.productImage }}</span>
+            </div>
+            <div class="urlKey">
+                <label for="">URL key</label>
+                <input type="text" name="product[urlKey]" value="{{ productData.urlKey}}">
+            </div>
+            <div class="SKU">
+                <label for="">SKU</label>
+                <input type="text" name="product[SKU]" value="{{ productData.SKU}}">
+            </div>
+            <div class="category">
+                <label for="">Category </label>
+                 <select name="product[category]" value="">
+                    {% for cat in categoryList %} 
+                        <option value="{{ cat.categoryId }}">{{ cat.categoryName }}</option>
+                    {% endfor %}
+                 </select>
+            </div>
+            <div class="status">
+                <label for="">Status</label>
+                <select name="product[status]" id="">
+                    <option value="1">1</option>
+                    <option value="1">0</option>
+                </select>
+            </div>
+            <div class="submit">
+                <input type="submit" value="{{ btnValue }}" name="submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %} {% endblock %} </title>
+    {% block css %} {% endblock %}
+    <style>
+        span {
+            color: red;
+        }
+        nav a {
+            padding: 15px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/cybercom/php/ecom_portal/Public/"> Home </a> 
+        <a href="/cybercom/php/ecom_portal/Public/Register/registerForm"> Add User </a> 
+        <a href="/cybercom/php/ecom_portal/Public/Register/showUser"> Show Users </a>
+    </nav>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

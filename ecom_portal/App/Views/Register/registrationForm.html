@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Registration Form {% endblock %}
+
+{% block css %}
+    <!-- <link type="text/css" rel="stylesheet" href='css/registrationForm.css'> -->
+{% endblock %}
+{% if edit == 'edit'  %}
+    {% set btnValue = 'UPDATE' %}
+    {% set actionValue = 'updateUser' %}
+{% else %}
+    {% set btnValue = 'REGISTER' %}
+    {% set actionValue = 'addUser' %}
+{% endif %}
+{% block body %}
+    <br><br>
+    <form action="{{ actionValue }}" method="POST">
+        <div id="register">
+            <div class="firstName">
+                First Name : <input type="text" name="register[firstName]" value="{{ postData.firstName }}">
+                <span>{{ errList.firstName }}</span>
+            </div>
+            <div class="email">
+                Email : <input type="email" name="register[emailId]" value="{{ postData.emailId }}">
+                <span>{{ errList.emailId }}</span>
+            </div>
+            <div class="password">
+                Password : <input type="password" name="register[pass]">
+            </div>
+            <div class="confirmPass">
+                Confirm Password : <input type="password" name="register[confirmPass]"> 
+                <span>{{ errList.confirmPass }}</span>
+            </div>
+            <div class="submit">
+                <input type="submit" value="{{ btnValue }}" name="submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}
