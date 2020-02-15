@@ -11,8 +11,8 @@
 {% endif %}
 {% block body %}
     <br>       
-    <a href="/cybercom/php/ecom_portal/Public/Admin/Categories"> BACK </a>
-    <br>
+    <a href="/cybercom/php/ecom_portal/Public/Admin/Products"> BACK </a>
+    <br><h1>{{ actionValue }}</h1>
     <br>
     <form action="{{ actionValue }}" method="POST" enctype="multipart/form-data">
         <div id="product">
@@ -52,19 +52,28 @@
                 <input type="text" name="product[SKU]" value="{{ productData.SKU}}">
             </div>
             <div class="category">
-                <label for="">Category </label>
+                <label for=""> Parent Category </label>
                  <select name="product[category]" value="">
-                    <!-- <option selected value="NULL">None</option> -->
                     {% for cat in categoryList %} 
-                        <option value="{{ cat.categoryId }}">{{ cat.categoryName }}</option>
+                    {% if cat.categoryId == productData.categoryId %}
+                        {% set selected = "selected" %}
+                    {% else %}
+                        {% set selected = "" %}
+                    {% endif %}                    
+                        <option value="{{ cat.categoryId }}" {{ selected }}>{{ cat.categoryName }}</option>
                     {% endfor %}
                  </select>
             </div>
             <div class="status">
                 <label for="">Status</label>
-                <select name="product[status]" id="">
-                    <option value="1">1</option>
-                    <option value="1">0</option>
+                <select name="product[status]">
+                    {% if productData.status == 1 %}
+                        {% set selectedOne = "selected" %}
+                    {% elseif productData.status == 2 %}
+                        {% set selectedZero = "selected" %}
+                    {% endif %}
+                    <option value="1" {{ selectedOne }}>1</option>
+                    <option value="2" {{ selectedZero }}>0</option>
                 </select>
             </div>
             <div class="submit">

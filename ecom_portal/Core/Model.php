@@ -65,7 +65,7 @@ abstract class Model {
         $updateQuery = (func_num_args() == 3 ) 
                         ? "update $tableName set $fieldValue where $condition" 
                         : "update $tableName set $fieldValue";
-        echo "$updateQuery<br><br>";
+        // echo "$updateQuery<br><br>";
         try {
             $db = static::getDB();
             return $db->exec($updateQuery);

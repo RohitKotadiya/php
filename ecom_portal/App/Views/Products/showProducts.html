@@ -18,6 +18,8 @@
             <th>Product Name</th>
             <th>Product Image</th>
             <th>Price </th>
+            <th>status </th>
+
             <th colspan="2">Actions</th>
         </tr>
         {% for singleProduct in allProduct %}
@@ -27,8 +29,9 @@
                 <td><img src="../{{singleProduct.productImage}}" alt="{{singleProduct.productImage}}"
                                 height="80px" width="100px" ></td>
                 <td>{{ singleProduct.price }}</td>
+                <td>{{ singleProduct.status }}</td>
                 <td><a href="/cybercom/php/ecom_portal/Public/Admin/Products/{{ singleProduct.productId }}/editProduct"> edit</a></td>
-                <td><a href="/cybercom/php/ecom_portal/Public/Register/{{ singleUser.userId }}/deleteUser">delete </a></td>
+                <td><a href="/cybercom/php/ecom_portal/Public/Admin/Products/{{ singleProduct.productId }}/deleteUser">delete </a></td>
             </tr>    
         {% endfor %}
     </table>

@@ -34,10 +34,42 @@ class Products extends \Core\BaseController {
         }
     }
     public function editProduct() {
-        print_r($this->routeParams);
-        // $productId = $this->routeParams['id'];
-        // $singleProduct = Product::getSingleProduct($productId);
-        // View::renderTemplate("Register/registrationForm.html",['edit' => 'edit','postData' => $singleUser[0]]);
+        $categoryList = Product::getCategoryData();
+        $productId = $this->routeParams['id'];
+        $singleProduct = Product::getSingleProduct($productId);
+        View::renderTemplate("Products/showProductForm.html",['categoryList' => $categoryList,
+                                                                'edit' => 'edit',
+                                                                'productData' => $singleProduct]);
+    }
+    public function updateProduct() {
+        $categoryList = Product::getCategoryData();
+        $productId = $this->routeParams['id'];
+        $this->validateForm($_POST['product']);
+        if(empty($this->errList)) {
+            $cleanProductData = $this->prepareProductData($_POST['product']);
+            $cleanProductData['updatedAt'] = date('Y-m-d H:i:s', time());
+            $productCatData['categoryId'] = $_POST['product']['category'];
+            Product::updateProductCatData($productCatData, $productId);
+            if(Product::updateProductData($cleanProductData, $productId)) {
+                echo "<script> alert('Product Updated Successfully');
+                                window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Products';
+                      </script>";
+            }
+        }else {
+            View::renderTemplate("Products/showProductForm.html", ['errList' => $this->errList,
+                                                                    'categoryList' => $categoryList,
+                                                                    'edit' => 'edit', 
+                                                                    'productData' => $_POST['product']]);
+        }
+
+    }
+    public function deleteUser() {
+        $productId = $this->routeParams['id'];
+        if(Product::removeProductData($productId) ) {
+            echo "<script> alert('Product Removed Successfully') 
+                            window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Products';
+                  </script>";
+        }
     }
     protected function prepareProductData($data) {
         $preparedData = [];
@@ -77,7 +109,7 @@ class Products extends \Core\BaseController {
                 $this->errList[$fieldName] = $emptyMsg;
             }else {
                 switch($fieldName) {
-                    case 'productName'    : if(!preg_match('/^[a-zA-Z]*$/', $fieldValue)) {
+                    case 'productName'    : if(!preg_match('/^[a-zA-Z ]*$/', $fieldValue)) {
                                                 $this->errList[$fieldName] = $errMsg . $fieldName;
                                             }
                                             break;
