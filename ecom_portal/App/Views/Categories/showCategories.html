@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories </title>
+</head>
+<body>
+    <h2> Category Information </h2>
+    <nav>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/Categories/add"> Add Category</a>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/"> BACK </a>
+    </nav>
+    <br><br>
+    <table border="1">
+        <tr>
+            <th>CategoryId </th>
+            <th>Category Name</th>
+            <th>Category Image</th>
+            <th> Parent Category </th>
+            <th> Status </th>
+            <th colspan="2">Actions</th>
+        </tr>
+        {% for singleCategory in allCategories %}
+            <tr>
+                <td>{{ singleCategory.categoryId}}</td>
+                <td>{{ singleCategory.categoryName }} </td>
+                <td><img src="../{{singleCategory.categoryImage}}" alt="{{singleCategory.categoryImage}}"
+                                height="80px" width="100px" ></td>
+                <td>{{ singleCategory.parentCategoryId }} </td>
+                <td>{{ singleCategory.status }} </td>
+                <td><a href="/cybercom/php/ecom_portal/Public/Admin/Categories/{{ singleCategory.categoryId }}/editCategory"> edit</a></td>
+                <td><a href="/cybercom/php/ecom_portal/Public/Admin/Categories/{{ singleCategory.categoryId }}/deleteCategory">delete </a></td>
+            </tr>    
+        {% endfor %}
+    </table>
+
+</body>
+</html>    

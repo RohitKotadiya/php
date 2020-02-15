@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use \Core\View;
 use \App\Models\Product;
+use \App\Models\Category;
 
 class Admin extends \Core\BaseController {
     public function login() {
@@ -25,8 +26,12 @@ class Admin extends \Core\BaseController {
     }
     public function products() {
         $allProducts = Product::getProductData(); 
-        View::renderTemplate("Products/showProducts.html",['allProduct' => $allProducts]);    } 
+        View::renderTemplate("Products/showProducts.html",['allProduct' => $allProducts]);   
+    } 
+    public function categories() {
+        $allCategories = Category::getCategoryData(); 
+        View::renderTemplate("Categories/showCategories.html",['allCategories' => $allCategories]);   
+    }
+
 }
-
-
 ?>

@@ -12,5 +12,8 @@ class Product extends \Core\Model {
     public static function insertProductData($data) {
         return parent::insertData('product', $data);
     }
+    public static function insertProductCatData($data) {
+        return parent::insertData('product_category', $data);
+    }
 }
 ?>

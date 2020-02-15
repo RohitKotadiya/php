@@ -13,6 +13,8 @@ abstract class Model {
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             return $db;
+        }else {
+            return $db;
         }
     }
     public function insertData($tableName , $data) {
@@ -27,10 +29,12 @@ abstract class Model {
         }
         $tableValues = implode(",", $tableValues);
         $insertQuery = "insert into $tableName ($tablefields) values ($tableValues)";
-        echo $insertQuery;
+        // echo $insertQuery;
         try {
             $db = static::getDB();
-            return $db->exec($insertQuery);
+            // print_r("db Obj : ", $db);
+            $db->exec($insertQuery);
+            return $db->lastInsertId();
         } catch(PDOException $e) {
             echo "Error : " . $e->getMessage();
         }
@@ -39,6 +43,7 @@ abstract class Model {
         $searchQuery = (func_num_args() == 3 ) 
                         ? "select $columnNames from $tableName where $condition" 
                         : "select $columnNames from $tableName";
+        // echo $searchQuery;
         try {
             $db = static::getDB();
             $stmt = $db->query($searchQuery);
@@ -60,7 +65,7 @@ abstract class Model {
         $updateQuery = (func_num_args() == 3 ) 
                         ? "update $tableName set $fieldValue where $condition" 
                         : "update $tableName set $fieldValue";
-        // echo "$updateQuery<br><br>";
+        echo "$updateQuery<br><br>";
         try {
             $db = static::getDB();
             return $db->exec($updateQuery);

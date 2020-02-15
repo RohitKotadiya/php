@@ -13,10 +13,15 @@ class Products extends \Core\BaseController {
                                                             'productData' => $_POST['product']]);
     }
     public function addProduct() {
+        $productCatData = [];
         $this->validateForm($_POST['product']);
         if(empty($this->errList)) {
             $cleanProductData = $this->prepareProductData($_POST['product']);
-            if(Product::insertProductData($cleanProductData) ) {
+            $lastProductId = Product::insertProductData($cleanProductData);
+            $productCatData['productId'] = $lastProductId;
+            $productCatData['categoryId'] = $_POST['product']['category'];
+            
+            if(Product::insertProductCatData($productCatData)){
                 echo "<script> alert('Added Successfully') 
                         window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Products';
                       </script>";
@@ -30,8 +35,8 @@ class Products extends \Core\BaseController {
     }
     public function editProduct() {
         print_r($this->routeParams);
-        // $userId = $this->routeParams['id'];
-        // $singleUser = User::getSingleUser($userId);
+        // $productId = $this->routeParams['id'];
+        // $singleProduct = Product::getSingleProduct($productId);
         // View::renderTemplate("Register/registrationForm.html",['edit' => 'edit','postData' => $singleUser[0]]);
     }
     protected function prepareProductData($data) {
@@ -89,7 +94,7 @@ class Products extends \Core\BaseController {
         return $this->errList;
     }
     public function validateFile($fieldName) {
-        $uploadDir = '../uploads/';
+        $uploadDir = '../Public/uploads/';
         $uploadFile = $uploadDir . basename($_FILES[$fieldName]['name']);
         $acceptTypes = ['image/png', 'image/jpg', 'image/jpeg'];
         if(in_array($_FILES[$fieldName]['type'], $acceptTypes)) {

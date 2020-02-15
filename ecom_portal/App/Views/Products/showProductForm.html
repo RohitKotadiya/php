@@ -11,7 +11,7 @@
 {% endif %}
 {% block body %}
     <br>       
-    <a href="/cybercom/php/ecom_portal/Public/Admin/Products"> BACK </a>
+    <a href="/cybercom/php/ecom_portal/Public/Admin/Categories"> BACK </a>
     <br>
     <br>
     <form action="{{ actionValue }}" method="POST" enctype="multipart/form-data">
@@ -54,6 +54,7 @@
             <div class="category">
                 <label for="">Category </label>
                  <select name="product[category]" value="">
+                    <!-- <option selected value="NULL">None</option> -->
                     {% for cat in categoryList %} 
                         <option value="{{ cat.categoryId }}">{{ cat.categoryName }}</option>
                     {% endfor %}

@@ -1,0 +1,69 @@
+{% extends "Admin/dashboard.html" %}
+
+{% block title %} Add Product {% endblock %}
+
+{% if edit == 'edit'  %}
+    {% set btnValue = 'UPDATE' %}
+    {% set actionValue = 'updateCategory' %}
+{% else %}
+    {% set btnValue = 'ADD CATEGORY' %}
+    {% set actionValue = 'addCategory' %}
+{% endif %}
+{% block body %}
+    <br>       
+    <a href="/cybercom/php/ecom_portal/Public/Admin/Categories"> BACK </a>
+    <br>
+    <br>
+    <form action="{{ actionValue }}" method="POST" enctype="multipart/form-data">
+        <div id="category">
+            <div class="categoryName">
+                <label>Category Name </label>
+                <input type="text" name="category[categoryName]" value="{{ categoryData.categoryName }}">
+                <span>{{ errList.categoryName }}</span>
+            </div>
+            <div class="categoryDesc">
+                <label> Description </label>
+                <input type="text" name="category[description]" value="{{ categoryData.description}}">
+            </div>
+            <div class="categoryImage">
+                <label for="">Image</label>
+                <input type="file" name="categoryImage" accept="image/*">
+                <span>{{ errList.categoryImage }}</span>
+            </div>
+            <div class="urlKey">
+                <label for="">URL key</label>
+                <input type="text" name="category[urlKey]" value="{{ categoryData.urlKey}}">
+            </div>
+            <div class="category">
+                <label for="">Parent Category </label>
+                 <select name="category[parentCategoryId]" value="">
+                    <option selected value="NULL">None</option>
+                    {% for cat in categoryList %} 
+                        {% if cat.categoryId == categoryData.parentCategoryId %}
+                            {% set selected = "selected" %}
+                        {% else %}
+                            {% set selected = "" %}
+                        {% endif %}
+                        <option value="{{ cat.categoryId }}" {{ selected }}>{{ cat.categoryName }}</option>
+                    {% endfor %}
+                 </select>
+            </div>
+            <div class="status">
+                <label for="">Status</label>
+                <select name="category[status]">
+                    {% if categoryData.status == 1 %}
+                        {% set selectedOne = "selected" %}
+                    {% elseif categoryData.status == 2 %}
+                        {% set selectedZero = "selected" %}
+                    {% endif %}
+                    <option value="1" {{ selectedOne }}>1</option>
+                    <option value="2" {{ selectedZero }}>0</option>
+                </select>
+                <span>{{ errList.status }}</span>
+            </div>
+            <div class="submit">
+                <input type="submit" value="{{ btnValue }}" name="submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}

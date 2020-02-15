@@ -16,6 +16,7 @@
         <tr>
             <th>ProductId </th>
             <th>Product Name</th>
+            <th>Product Image</th>
             <th>Price </th>
             <th colspan="2">Actions</th>
         </tr>
@@ -23,6 +24,8 @@
             <tr>
                 <td>{{ singleProduct.productId}}</td>
                 <td>{{ singleProduct.productName }} </td>
+                <td><img src="../{{singleProduct.productImage}}" alt="{{singleProduct.productImage}}"
+                                height="80px" width="100px" ></td>
                 <td>{{ singleProduct.price }}</td>
                 <td><a href="/cybercom/php/ecom_portal/Public/Admin/Products/{{ singleProduct.productId }}/editProduct"> edit</a></td>
                 <td><a href="/cybercom/php/ecom_portal/Public/Register/{{ singleUser.userId }}/deleteUser">delete </a></td>
