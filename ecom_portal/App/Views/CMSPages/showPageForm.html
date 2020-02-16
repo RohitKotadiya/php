@@ -1,0 +1,48 @@
+{% extends "Admin/dashboard.html" %}
+
+{% block title %} Add Page {% endblock %}
+
+{% if edit == 'edit'  %}
+    {% set btnValue = 'UPDATE' %}
+    {% set actionValue = 'updatePage' %}
+{% else %}
+    {% set btnValue = 'ADD PAGE' %}
+    {% set actionValue = 'addPage' %}
+{% endif %}
+{% block body %}
+    <br>       
+    <a href="/cybercom/php/ecom_portal/Public/Admin/CmsPages"> BACK </a>
+    <br><h1>{{ actionValue }}</h1>
+    <br>
+    <form action="{{ actionValue }}" method="POST" enctype="multipart/form-data">
+        <div id="page">
+            <div class="pageTitle">
+                <label>page Title </label>
+                <input type="text" name="page[pageTitle]" value="{{ pageData.pageTitle }}">
+            </div>
+            <div class="pageContent">
+                <label> Content </label>
+                <input type="text" name="page[content]" value="{{ pageData.content}}">
+            </div>
+            <div class="urlKey">
+                <label for="">URL key</label>
+                <input type="text" name="page[urlKey]" value="{{ pageData.urlKey}}">
+            </div>
+            <div class="status">
+                <label for="">Status</label>
+                <select name="page[status]">
+                    {% if pageData.status == 1 %}
+                        {% set selectedOne = "selected" %}
+                    {% elseif pageData.status == 2 %}
+                        {% set selectedZero = "selected" %}
+                    {% endif %}
+                    <option value="1" {{ selectedOne }}>1</option>
+                    <option value="2" {{ selectedZero }}>0</option>
+                </select>
+            </div>
+            <div class="submit">
+                <input type="submit" value="{{ btnValue }}" name="submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}

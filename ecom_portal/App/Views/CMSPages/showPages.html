@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pages </title>
+</head>
+<body>
+    <h2> Page Information </h2>
+    <nav>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/Cms/add"> Add page</a>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/"> BACK </a>
+    </nav>
+    <br><br>
+    <table border="1">
+        <tr>
+            <th>pageId </th>
+            <th>page Name</th>
+            <th>page Url</th>
+            <th> page Content </th>
+            <th> Status </th>
+            <th colspan="2">Actions</th>
+        </tr>
+        {% for singlePage in allPages %}
+            <tr>
+                <td>{{ singlePage.pageId}}</td>
+                <td>{{ singlePage.pageTitle }} </td>
+                <td>{{ singlePage.urlKey }} </td>
+                <td>{{ singlePage.content }} </td>
+                <td>{{ singlePage.status }} </td>
+                <td><a href="/cybercom/php/ecom_portal/Public/Admin/Cms/{{ singlePage.pageId }}/editPage"> edit</a></td>
+                <td><a href="/cybercom/php/ecom_portal/Public/Admin/Cms/{{ singlePage.pageId }}/deletePage">delete </a></td>
+            </tr>    
+        {% endfor %}
+    </table>
+
+</body>
+</html>    

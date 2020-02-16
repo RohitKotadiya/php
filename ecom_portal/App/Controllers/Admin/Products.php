@@ -7,24 +7,23 @@ use \App\Models\Product;
 class Products extends \Core\BaseController {
     public $errList = [];
 
-    public static function add() {
+    public static function addAction() {
         $categoryList = Product::getCategoryData();
         View::renderTemplate("Products/showProductForm.html",['categoryList' => $categoryList,
                                                             'productData' => $_POST['product']]);
     }
-    public function addProduct() {
+    public function addProductAction() {
         $productCatData = [];
         $this->validateForm($_POST['product']);
         if(empty($this->errList)) {
             $cleanProductData = $this->prepareProductData($_POST['product']);
+            $cleanProductData['createdAt'] = date('Y-m-d H:i:s', time());
             $lastProductId = Product::insertProductData($cleanProductData);
             $productCatData['productId'] = $lastProductId;
             $productCatData['categoryId'] = $_POST['product']['category'];
             
             if(Product::insertProductCatData($productCatData)){
-                echo "<script> alert('Added Successfully') 
-                        window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Products';
-                      </script>";
+                echo $this->displayPopup('Added Successfully','/cybercom/php/ecom_portal/Public/Admin/Products');
             }
         }else {
             $categoryList = Product::getCategoryData();
@@ -33,7 +32,7 @@ class Products extends \Core\BaseController {
                                                             'productData' => $_POST['product']]);     
         }
     }
-    public function editProduct() {
+    public function editProductAction() {
         $categoryList = Product::getCategoryData();
         $productId = $this->routeParams['id'];
         $singleProduct = Product::getSingleProduct($productId);
@@ -41,7 +40,7 @@ class Products extends \Core\BaseController {
                                                                 'edit' => 'edit',
                                                                 'productData' => $singleProduct]);
     }
-    public function updateProduct() {
+    public function updateProductAction() {
         $categoryList = Product::getCategoryData();
         $productId = $this->routeParams['id'];
         $this->validateForm($_POST['product']);
@@ -51,9 +50,7 @@ class Products extends \Core\BaseController {
             $productCatData['categoryId'] = $_POST['product']['category'];
             Product::updateProductCatData($productCatData, $productId);
             if(Product::updateProductData($cleanProductData, $productId)) {
-                echo "<script> alert('Product Updated Successfully');
-                                window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Products';
-                      </script>";
+                echo $this->displayPopup('Updated Successfully','/cybercom/php/ecom_portal/Public/Admin/Products');
             }
         }else {
             View::renderTemplate("Products/showProductForm.html", ['errList' => $this->errList,
@@ -63,12 +60,10 @@ class Products extends \Core\BaseController {
         }
 
     }
-    public function deleteUser() {
+    public function deleteUserAction() {
         $productId = $this->routeParams['id'];
         if(Product::removeProductData($productId) ) {
-            echo "<script> alert('Product Removed Successfully') 
-                            window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Products';
-                  </script>";
+            echo $this->displayPopup('Removed Successfully','/cybercom/php/ecom_portal/Public/Admin/Products');
         }
     }
     protected function prepareProductData($data) {
@@ -96,7 +91,6 @@ class Products extends \Core\BaseController {
 
             }
         }
-        $preparedData['createdAt'] = date('Y-m-d H:i:s', time());
         $preparedData['productImage'] = $this->validateFile('productImage');
         return $preparedData;
     }
@@ -135,6 +129,14 @@ class Products extends \Core\BaseController {
         }else {
             return false;
         } 
+    }
+    protected function before() { // why this two here and in Home also
+        if($this->checkSession())
+            return true;
+        else {
+            header('location:../login');
+            return false;
+        }
     }
 }
 ?>

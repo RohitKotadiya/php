@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     <title>{% block title %} Dashboard {% endblock %} </title>
+    <!-- <link rel="stylesheet" href="dashboard.css" type="text/css"> -->
     <style>
         span {
-            color: red;
-        }
-        nav a {
-            padding: 15px;
-            font-size: 20px;
-            text-decoration: none;
-        }
+                color: red;
+            }
+            nav a {
+                padding: 15px;
+                font-size: 20px;
+                text-decoration: none;
+            }
+            label {
+                display: inline-block;
+                padding: 5px;
+                width: 150px;
+            }
+            input[type='submit']{
+                margin-left: 25%;
+                margin-top: 20px;
+            }
+            form{
+                width: 500px;
+            }
     </style>
 </head>
 <body>
@@ -18,8 +31,8 @@
         <a href="/cybercom/php/ecom_portal/Public/Admin/"> Home </a> 
         <a href="/cybercom/php/ecom_portal/Public/Admin/Products"> Manage Products </a> 
         <a href="/cybercom/php/ecom_portal/Public/Admin/Categories"> Manage Categories </a>
-        <a href="/cybercom/php/ecom_portal/Public/Admin/"> Manage CMS </a>
-        <a href="/cybercom/php/ecom_portal/Public/Admin/login"> Logout </a> 
+        <a href="/cybercom/php/ecom_portal/Public/Admin/CmsPages"> Manage CMS </a>
+        <a href="/cybercom/php/ecom_portal/Public/Admin/logout"> Logout </a> 
     </nav>
     <br>
     <h1> Welcome Admin</h1>

@@ -4,6 +4,7 @@ namespace App\Controllers;
 use \Core\View;
 
 class Home extends \Core\BaseController {
+    
     public function indexAction() {
         // echo "u r in the index method of Home Class";
         $userData = ['firstName' => 'Keyur',

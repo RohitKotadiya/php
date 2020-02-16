@@ -4,9 +4,11 @@ namespace Core;
 
 abstract class BaseController {    //abstract bcaz will not create obj directly of this class
     protected $routeParams = [];   // to store route paramters
-
+    // public $userSession;
     public function __construct($routeParameters) {
         $this->routeParams = $routeParameters;
+        // $this->userSession = $_SESSION['loggedIn'];
+        session_start();
     }
 
     public function __call($methodName, $args) {   // to call unaccsible methods 
@@ -22,12 +24,22 @@ abstract class BaseController {    //abstract bcaz will not create obj directly 
             throw new \Exception("$methodName not found in class " . get_class($this));
         }
     }
-    protected function before() { // why this two here and in Home also
+    protected function before() { 
 
     }               //called before action performed
     protected function after() {
 
     }               //called after action performed
+    protected function displayPopup($msg, $redirect = "") {
+        return ($redirect != "") 
+                ? "<script> alert('$msg'); window.location.href = '$redirect'; </script>" 
+                : "<script> alert('$msg'); </script>";
+    }
+    protected function checkSession() {
+        if($_SESSION['loggedIn'] == true) {
+            return true;
+        }
+    }
 }
 
 ?>

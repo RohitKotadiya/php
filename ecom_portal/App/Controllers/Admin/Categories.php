@@ -6,20 +6,19 @@ use \App\Models\Category;
 class Categories extends \Core\BaseController {
     public $errList = [];
 
-    public static function add() {
+    public static function addAction() {
         $categoryList = Category::getCategoryList();
         View::renderTemplate("Categories/showCategoryForm.html",['categoryList' => $categoryList,
                                                             'categoryData' => $_POST['category']]);
     }
-    public function addCategory() {
+    public function addCategoryAction() {
         $this->validateForm($_POST['category']);
         if(empty($this->errList)) {
             echo "hi";
             $cleanCategoryData = $this->prepareCategoryData($_POST['category']);
+            $cleanCategoryData['createdAt'] = date('Y-m-d H:i:s', time());
             if(Category::insertCategoryData($cleanCategoryData)) {
-                echo "<script> alert('Added Successfully') 
-                        window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Categories';
-                      </script>";
+                echo $this->displayPopup('Added Successfully','/cybercom/php/ecom_portal/Public/Admin/Categories');
             }
         }else {
             $categoryList = Category::getCategoryData();
@@ -28,7 +27,7 @@ class Categories extends \Core\BaseController {
                                                             'categoryData' => $_POST['category']]);     
         }
     }
-    public function editCategory() {
+    public function editCategoryAction() {
         $categoryList = Category::getCategoryList();
         $catId = $this->routeParams['id'];
         $singleCategory = Category::getSingleCategory($catId);
@@ -36,16 +35,15 @@ class Categories extends \Core\BaseController {
                                                                 'edit' => 'edit',
                                                                 'categoryData' => $singleCategory[0]]);
     }
-    public function updateCategory() {
+    public function updateCategoryAction() {
         $categoryList = Category::getCategoryList();
         $catId = $this->routeParams['id'];
         $this->validateForm($_POST['category']);
         if(empty($this->errList)) {
             $cleanCategoryData = $this->prepareCategoryData($_POST['category']);
+            $cleanCategoryData['updatedAt'] = date('Y-m-d H:i:s', time());
             if(Category::updateCategoryData($cleanCategoryData, $catId)) {
-                echo "<script> alert('Category Updated Successfully');
-                                window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Categories';
-                      </script>";
+                echo $this->displayPopup('Updated Successfully','/cybercom/php/ecom_portal/Public/Admin/Categories');
             }
         }else {
             View::renderTemplate("Categories/showCategoryForm.html", ['errList' => $this->errList,
@@ -55,12 +53,10 @@ class Categories extends \Core\BaseController {
         }
 
     }
-    public function deleteCategory() {
+    public function deleteCategoryAction() {
         $catId = $this->routeParams['id'];
         if(Category::removeCategoryData($catId) ) {
-            echo "<script> alert('Category Removed Successfully') 
-                            window.location.href = '/cybercom/php/ecom_portal/Public/Admin/Categories';
-                  </script>";
+            echo $this->displayPopup('Removed Successfully','/cybercom/php/ecom_portal/Public/Admin/Categories');
         }
     }
     protected function prepareCategoryData($data) {
@@ -79,7 +75,6 @@ class Categories extends \Core\BaseController {
                                             break;
             }
         }
-        $preparedData['createdAt'] = date('Y-m-d H:i:s', time());
         $preparedData['categoryImage'] = $this->validateFile('categoryImage');
         return $preparedData;
     }
@@ -114,6 +109,14 @@ class Categories extends \Core\BaseController {
         }else {
             return false;
         } 
+    }
+    protected function before() { // why this two here and in Home also
+        if($this->checkSession())
+            return true;
+        else {
+            header('location:../login');
+            return false;
+        }
     }
 }
 ?>
