@@ -23,6 +23,9 @@ class Admin extends \Core\BaseController {
             }
         }
     }
+    public function adminIndexAction() {
+        View::renderTemplate('Admin/dashboard.html');
+    }
     public function productsAction() {
         $allProducts = Product::getProductData(); 
         View::renderTemplate("Products/showProducts.html",['allProduct' => $allProducts]);   

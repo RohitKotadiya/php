@@ -7,6 +7,7 @@ class Categories extends \Core\BaseController {
     public $errList = [];
 
     public static function addAction() {
+        // echo "ho";
         $categoryList = Category::getCategoryList();
         View::renderTemplate("Categories/showCategoryForm.html",['categoryList' => $categoryList,
                                                             'categoryData' => $_POST['category']]);

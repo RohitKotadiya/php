@@ -16,20 +16,23 @@
 	set_exception_handler('Core\Error::exceptionHandler');
 
 	$router = new Core\Router();
-	$router->add('', ['controller' => 'Home', 'action' => 'index']);
-	
+	$router->add('', ['urlkey' => 'home','controller' => 'CmsPages', 'action' => 'index']);
+	$router->add('{urlkey:[a-zA-Z-]+}', ['controller' => 'CmsPages', 'action' => 'index']); //for cms pages
+	// $router->add('{controller}/{action}/{urlkey:\w+}');
+
+	// echo "<pre>";
+	// echo htmlspecialchars(print_r($router->getRoutes(),true));
+	// echo "</pre>";
+	// die();
+
 	$router->add('{controller}/{action}');
-	// $router->add('admin/{action}/{controller}');
-	
 	$router->add('{controller}/{id:\d+}/{action}');
-	$router->add('admin/', ['controller' => 'Home', 'action' => 'adminIndex']); //working here
+
+	$router->add('admin/', ['controller' => 'Admin', 'action' => 'adminIndex']); //working here
 	$router->add('admin/{controller}/{action}', ['namespace' =>'Admin']); //workiing here
 	$router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' =>'Admin']);
 
-	// echo '<pre>' . "<br>Routers : ";
-	// var_dump($router->getRoutes());
-	// echo "</pre>";
-	// echo htmlspecialchars(print_r($router->getRoutes(),true));
+	
 
 	$url = $_SERVER['QUERY_STRING'];
 	// echo "URL : " . $url . "<br><br>";

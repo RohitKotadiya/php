@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} {{pageData.pageTitle}} {% endblock %}
+
+{% block body %}
+    <h3>Welcome </h3>
+    <h2> pageId : {{pageData.pageId}}</h2>
+   <h2>Content : {{pageData.content}}</h2> 
+   <nav>
+    {% for page in pageList %}
+        <a href="/cybercom/php/ecom_portal/Public/{{page.urlKey}}"> {{page.pageTitle}} </a> 
+    {% endfor %}
+</nav>
+{% endblock %}
