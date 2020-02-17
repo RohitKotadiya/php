@@ -7,7 +7,7 @@ use \App\Models\CMSPage;
 class Cms extends \Core\BaseController {
     
     public static function addAction() {
-        View::renderTemplate("CMSPages/showPageForm.html",['pageData' => $_POST['page']]);
+        View::renderTemplate("Admin/CMSPages/showPageForm.html",['pageData' => $_POST['page']]);
     }
     public function addPageAction() {
         $cleanPageData = $this->preparePageData($_POST['page']);
@@ -19,7 +19,7 @@ class Cms extends \Core\BaseController {
     public function editPageAction() {
         $pageId = $this->routeParams['id'];
         $singlePage = CMSPage::getSinglePage($pageId);
-        View::renderTemplate("CMSPages/showPageForm.html",['edit' => 'edit',
+        View::renderTemplate("Admin/CMSPages/showPageForm.html",['edit' => 'edit',
                                                            'pageData' => $singlePage[0]]);
     }
     public function updatePageAction() {
@@ -52,7 +52,7 @@ class Cms extends \Core\BaseController {
         }
         return $preparedData;
     }
-    protected function before() { // why this two here and in Home also
+    protected function before() { 
         if($this->checkSession())
             return true;
         else {

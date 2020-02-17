@@ -9,7 +9,7 @@ class Products extends \Core\BaseController {
 
     public static function addAction() {
         $categoryList = Product::getCategoryData();
-        View::renderTemplate("Products/showProductForm.html",['categoryList' => $categoryList,
+        View::renderTemplate("Admin/Products/showProductForm.html",['categoryList' => $categoryList,
                                                             'productData' => $_POST['product']]);
     }
     public function addProductAction() {
@@ -27,7 +27,7 @@ class Products extends \Core\BaseController {
             }
         }else {
             $categoryList = Product::getCategoryData();
-            View::renderTemplate("Products/showProductForm.html",['errList' => $this->errList,
+            View::renderTemplate("Admin/Products/showProductForm.html",['errList' => $this->errList,
                                                             'categoryList' => $categoryList,
                                                             'productData' => $_POST['product']]);     
         }
@@ -36,7 +36,7 @@ class Products extends \Core\BaseController {
         $categoryList = Product::getCategoryData();
         $productId = $this->routeParams['id'];
         $singleProduct = Product::getSingleProduct($productId);
-        View::renderTemplate("Products/showProductForm.html",['categoryList' => $categoryList,
+        View::renderTemplate("Admin/Products/showProductForm.html",['categoryList' => $categoryList,
                                                                 'edit' => 'edit',
                                                                 'productData' => $singleProduct]);
     }
@@ -53,7 +53,7 @@ class Products extends \Core\BaseController {
                 echo $this->displayPopup('Updated Successfully','/cybercom/php/ecom_portal/Public/Admin/Products');
             }
         }else {
-            View::renderTemplate("Products/showProductForm.html", ['errList' => $this->errList,
+            View::renderTemplate("Admin/Products/showProductForm.html", ['errList' => $this->errList,
                                                                     'categoryList' => $categoryList,
                                                                     'edit' => 'edit', 
                                                                     'productData' => $_POST['product']]);
@@ -82,8 +82,6 @@ class Products extends \Core\BaseController {
                                             break;
                 case 'SKU'              : $preparedData['SKU'] = $fieldValue;
                                             break;
-                // case 'category'         : $preparedData['category'] = $fieldValue;
-                //                             break;
                 case 'status'           : $preparedData['status'] = $fieldValue;
                                             break;
                 case 'stock'            : $preparedData['stock'] = $fieldValue;
@@ -91,7 +89,7 @@ class Products extends \Core\BaseController {
 
             }
         }
-        $preparedData['productImage'] = $this->validateFile('productImage');
+        $preparedData['productImage'] = parent::validateFile('productImage');
         return $preparedData;
     }
     protected function validateForm($formData) {
@@ -114,23 +112,12 @@ class Products extends \Core\BaseController {
                 }
             }
         }
-        if($this->validateFile('productImage') === false) {
+        if(parent::validateFile('productImage') === false) {
             $this->errList['productImage'] = "Please select valid image";
         }
         return $this->errList;
     }
-    public function validateFile($fieldName) {
-        $uploadDir = '../Public/uploads/';
-        $uploadFile = $uploadDir . basename($_FILES[$fieldName]['name']);
-        $acceptTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-        if(in_array($_FILES[$fieldName]['type'], $acceptTypes)) {
-            move_uploaded_file($_FILES[$fieldName]['tmp_name'], $uploadFile);
-            return $uploadDir . $_FILES[$fieldName]['name'];
-        }else {
-            return false;
-        } 
-    }
-    protected function before() { // why this two here and in Home also
+    protected function before() { 
         if($this->checkSession())
             return true;
         else {

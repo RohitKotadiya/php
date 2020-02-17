@@ -27,7 +27,6 @@ class Home extends \Core\Model {
         $stmt = $db->query($query);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
-        // return parent::fetchData('*', 'category');
     }
     public static function getPageList() {
         return parent::fetchData('*', 'cms_pages');

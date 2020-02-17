@@ -2,30 +2,54 @@
 <html lang="en">
 <head>
     <title>{% block title %} {% endblock %} </title>
-    {% block css %} {% endblock %}
-    <style>
-        span {
-            color: red;
-        }
-        nav{
-            height: 100px;
-            background-color: lightblue;
-        }
-        nav a {
-            padding: 15px;
-            font-size: 20px;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    {% set baseUrl = '/cybercom/php/ecom_portal/Public' %} 
 </head>
 <body>
-    <!-- <nav>
-        <a href="/cybercom/php/ecom_portal/Public/"> Home </a> 
-        <a href="/cybercom/php/ecom_portal/Public/Register/registerForm"> Add User </a> 
-        <a href="/cybercom/php/ecom_portal/Public/Register/showUser"> Show Users </a>
-    </nav> -->
+    <br>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">E-commerce Portal</a>
+          </div>
+          <ul class="nav navbar-nav">
+            {% for cat in categoryList %}
+            {% set childList = cat.childCatName | split(",") %}
+            {% set childUrlList = cat.childUrlKey | split(",") %}
+    
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ cat.parentCatName }}
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                {% for i in 0..childList|length %}
+                    <li><a href="{{baseUrl}}/CategoryView/View/{{ childUrlList[i] }}">{{ childList[i] }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>              
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+
     {% block body %}
             
     {% endblock %}
+
+    
+<footer class="navbar navbar-default navbar-fixed-bottom">
+        <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+    <ul class="nav navbar-nav">
+        {% for page in pageList %}
+            <li><a href="{{baseUrl}}/{{page.urlKey}}">{{page.pageTitle}}</a></li>
+        {% endfor %}
+        <ul>
+   </div>
+  </nav>  
+      <p class="text-muted" align="center">This is a footer</p>
+</footer>
 </body>
 </html>

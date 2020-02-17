@@ -2,18 +2,15 @@
 
 namespace Core;
 
-abstract class BaseController {    //abstract bcaz will not create obj directly of this class
-    protected $routeParams = [];   // to store route paramters
-    // public $userSession;
+abstract class BaseController {    
+    protected $routeParams = [];  
+
     public function __construct($routeParameters) {
         $this->routeParams = $routeParameters;
-        // $this->userSession = $_SESSION['loggedIn'];
         session_start();
     }
 
-    public function __call($methodName, $args) {   // to call unaccsible methods 
-                                                    // also used to call before and after of each action -
-                                                   // before/after for chk session, lang chang 
+    public function __call($methodName, $args) {   
         $methodName = $methodName . 'Action';
         if(method_exists($this, $methodName)) {
             if($this->before() !== false) {
@@ -25,7 +22,7 @@ abstract class BaseController {    //abstract bcaz will not create obj directly 
         }
     }
     protected function before() { 
-
+        
     }               //called before action performed
     protected function after() {
 
@@ -39,6 +36,17 @@ abstract class BaseController {    //abstract bcaz will not create obj directly 
         if($_SESSION['loggedIn'] == true) {
             return true;
         }
+    }
+    public function validateFile($fieldName, $dirName = '') {
+        $uploadDir = "../Public/uploads/";
+        $uploadFile = $uploadDir . basename($_FILES[$fieldName]['name']);
+        $acceptTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+        if(in_array($_FILES[$fieldName]['type'], $acceptTypes)) {
+            move_uploaded_file($_FILES[$fieldName]['tmp_name'], $uploadFile);
+            return $uploadDir . $_FILES[$fieldName]['name'];
+        }else {
+            return false;
+        } 
     }
 }
 

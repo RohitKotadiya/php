@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div id="catData">
+    <h2>{{catData.categoryName}}</h2>
+    <img src="../../{{catData.categoryImage}}" alt="" height="150px" width="150px">
+</div>
+<div id="productData"> 
+ <table border="1" align="center">
+     {% for product in productData %}
+         <tr>
+            <td colspan="2"><img src="../../{{product.productImage}}" alt=""
+                height="120px" width="120px" ></td>
+            <td>{{ product.productName}}</td>
+            <td>{{ product.productDesc }} </td>
+            <td>{{ product.stock }} </td>
+         </tr>    
+     {% endfor %}
+ </table>
+</div>
+
+{% endblock %}

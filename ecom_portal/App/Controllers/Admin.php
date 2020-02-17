@@ -28,15 +28,15 @@ class Admin extends \Core\BaseController {
     }
     public function productsAction() {
         $allProducts = Product::getProductData(); 
-        View::renderTemplate("Products/showProducts.html",['allProduct' => $allProducts]);   
+        View::renderTemplate("Admin/Products/showProducts.html",['allProduct' => $allProducts]);   
     } 
     public function categoriesAction() {
         $allCategories = Category::getCategoryData(); 
-        View::renderTemplate("Categories/showCategories.html",['allCategories' => $allCategories]);   
+        View::renderTemplate("Admin/Categories/showCategories.html",['allCategories' => $allCategories]);   
     }
     public function cmsPagesAction() {
         $allPages = CMSPage::getPageData(); 
-        View::renderTemplate("CMSPages/showPages.html",['allPages' => $allPages]);   
+        View::renderTemplate("Admin/CMSPages/showPages.html",['allPages' => $allPages]);   
     } 
     public function logoutAction() {
         if(session_destroy()) {
@@ -44,7 +44,7 @@ class Admin extends \Core\BaseController {
             exit;
         }
     }
-    protected function before() { // why this two here and in Home also
+    protected function before() {
         if($this->checkSession())
             return true;
         else {

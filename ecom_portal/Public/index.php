@@ -1,7 +1,5 @@
 <?php
 	
-	// require_once '../Core/Router.php';
-	// require_once '../App/Controllers/Posts.php';   // replaced with below spl_autoloader
 	require_once '../vendor/autoload.php';
 
 	spl_autoload_register(function ($class) {
@@ -16,36 +14,17 @@
 	set_exception_handler('Core\Error::exceptionHandler');
 
 	$router = new Core\Router();
+	
 	$router->add('', ['urlkey' => 'home','controller' => 'CmsPages', 'action' => 'index']);
 	$router->add('{urlkey:[a-zA-Z-]+}', ['controller' => 'CmsPages', 'action' => 'index']); //for cms pages
-	// $router->add('{controller}/{action}/{urlkey:\w+}');
-
-	// echo "<pre>";
-	// echo htmlspecialchars(print_r($router->getRoutes(),true));
-	// echo "</pre>";
-	// die();
-
 	$router->add('{controller}/{action}');
 	$router->add('{controller}/{id:\d+}/{action}');
-
 	$router->add('admin/', ['controller' => 'Admin', 'action' => 'adminIndex']); //working here
 	$router->add('admin/{controller}/{action}', ['namespace' =>'Admin']); //workiing here
 	$router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' =>'Admin']);
-
+	$router->add('{controller}/{action}/{urlkey:[a-zA-Z-]+}'); //working for view cat & product
 	
-
 	$url = $_SERVER['QUERY_STRING'];
-	// echo "URL : " . $url . "<br><br>";
-	// echo "class : " . get_class($router);
-	
-	
-	// if($router->matchUrl($url)) {
-	// 	echo "<br> <br> Paramteters : ";
-	// 	var_dump($router->getParams());
-	// }else {
-	// 	echo "no Route found $url";
-	// }					// now this is replaced with dispatch()
-
 	$router->dispatch($url);
 
 ?>

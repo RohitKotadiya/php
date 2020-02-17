@@ -12,6 +12,9 @@ class Config {
     const DB_PASSWORD = '';
     
     const SHOW_ERRORS = true;
+
+    const URL = '/cybercom/php/ecom_portal/Public';
+
 }
 
 

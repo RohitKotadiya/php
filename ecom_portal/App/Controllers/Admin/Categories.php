@@ -5,17 +5,16 @@ use \App\Models\Category;
 
 class Categories extends \Core\BaseController {
     public $errList = [];
-
+  
     public static function addAction() {
-        // echo "ho";
         $categoryList = Category::getCategoryList();
-        View::renderTemplate("Categories/showCategoryForm.html",['categoryList' => $categoryList,
+        View::renderTemplate("Admin/Categories/showCategoryForm.html",[
+                                                            'categoryList' => $categoryList,
                                                             'categoryData' => $_POST['category']]);
     }
     public function addCategoryAction() {
         $this->validateForm($_POST['category']);
         if(empty($this->errList)) {
-            echo "hi";
             $cleanCategoryData = $this->prepareCategoryData($_POST['category']);
             $cleanCategoryData['createdAt'] = date('Y-m-d H:i:s', time());
             if(Category::insertCategoryData($cleanCategoryData)) {
@@ -23,7 +22,7 @@ class Categories extends \Core\BaseController {
             }
         }else {
             $categoryList = Category::getCategoryData();
-            View::renderTemplate("Categories/showCategoryForm.html",['errList' => $this->errList,
+            View::renderTemplate("Admin/Categories/showCategoryForm.html",['errList' => $this->errList,
                                                             'categoryList' => $categoryList,
                                                             'categoryData' => $_POST['category']]);     
         }
@@ -32,7 +31,7 @@ class Categories extends \Core\BaseController {
         $categoryList = Category::getCategoryList();
         $catId = $this->routeParams['id'];
         $singleCategory = Category::getSingleCategory($catId);
-        View::renderTemplate("Categories/showCategoryForm.html",['categoryList' => $categoryList,
+        View::renderTemplate("Admin/Categories/showCategoryForm.html",['categoryList' => $categoryList,
                                                                 'edit' => 'edit',
                                                                 'categoryData' => $singleCategory[0]]);
     }
@@ -47,7 +46,7 @@ class Categories extends \Core\BaseController {
                 echo $this->displayPopup('Updated Successfully','/cybercom/php/ecom_portal/Public/Admin/Categories');
             }
         }else {
-            View::renderTemplate("Categories/showCategoryForm.html", ['errList' => $this->errList,
+            View::renderTemplate("Admin/Categories/showCategoryForm.html", ['errList' => $this->errList,
                                                                     'categoryList' => $categoryList,
                                                                     'edit' => 'edit', 
                                                                     'categoryData' => $_POST['category']]);
@@ -76,7 +75,7 @@ class Categories extends \Core\BaseController {
                                             break;
             }
         }
-        $preparedData['categoryImage'] = $this->validateFile('categoryImage');
+        $preparedData['categoryImage'] = parent::validateFile('categoryImage', 'categories');
         return $preparedData;
     }
     protected function validateForm($formData) {
@@ -95,23 +94,12 @@ class Categories extends \Core\BaseController {
                 }
             }
         }
-        if($this->validateFile('categoryImage') === false) {
+        if(parent::validateFile('categoryImage') === false) {
             $this->errList['categoryImage'] = "Please select valid image";
         }
         return $this->errList;
     }
-    public function validateFile($fieldName) {
-        $uploadDir = '../Public/uploads/categories/';
-        $uploadFile = $uploadDir . basename($_FILES[$fieldName]['name']);
-        $acceptTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-        if(in_array($_FILES[$fieldName]['type'], $acceptTypes)) {
-            move_uploaded_file($_FILES[$fieldName]['tmp_name'], $uploadFile);
-            return $uploadDir . $_FILES[$fieldName]['name'];
-        }else {
-            return false;
-        } 
-    }
-    protected function before() { // why this two here and in Home also
+    protected function before() { 
         if($this->checkSession())
             return true;
         else {

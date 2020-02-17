@@ -9,17 +9,12 @@ class Router {
 	public function add($route, $params = []) {
 		
 		$route = preg_replace('/\//', '\\/', $route);
-
 		$route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
-
 		$route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
-
 		$route = '/^' . $route . '$/i'; 
 
 		$this->routes[$route] = $params;
-
 	}
-
 	public function getRoutes() {
 		return $this->routes;
 	}
@@ -29,13 +24,9 @@ class Router {
 		if($this->matchUrl($url)) {
 			$controller = $this->params['controller'];
 			$controller = $this->convertToStudlyCaps($controller);
-
-			// $controller = "App\Controllers\\$controller";   //replced with below line after adding subdirectories in 
-																// Controllers to manage dynamically
 			$controller = $this->getNamespace() . $controller;
 			
 			if(class_exists($controller)) {
-				// $controllerObj =new $controller(); // replaced with below line after adding BaseController
 				$controllerObj =new $controller($this->params);
 				$action = $this->params['action'];
 				$action = $this->convertToCamelCase($action);
@@ -54,10 +45,6 @@ class Router {
 	}
 	public function matchUrl($url) {
 		foreach ($this->routes as $route => $params) {
-			// if($url == $route) {
-			// 	$this->params = $params;
-			// 	return true;
-			// }					//replace with below code for reg ex matching
 			if(preg_match($route, $url , $matches)) {
 				foreach ($matches as $key => $value) {
 					if(is_string($key)) {

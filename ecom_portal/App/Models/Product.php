@@ -31,5 +31,12 @@ class Product extends \Core\Model {
     public static function removeProductData($productId) {
         return parent::deleteRecord('product', "productId = $productId");
     }
+
+
+    //frontend
+
+    public static function viewProductData($url) {
+        return parent::fetchData('*', 'product', "urlKey = '$url'");
+    }
 }
 ?>
