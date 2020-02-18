@@ -3,7 +3,7 @@ namespace App\Models;
 use PDO;
 
 class Category extends \Core\Model {
-    public static function getCategoryList() {
+    public function getCategoryList() {
         return parent::fetchData('*', 'category', "parentCategoryId IS NULL");
     }
     public static function getCategoryData() {
@@ -41,7 +41,6 @@ class Category extends \Core\Model {
                     INNER JOIN category as c 
                     ON c.categoryId = pc.categoryId 
                     WHERE c.urlKey = '$url'";
-        
         $db = static::getDB();
         $stmt = $db->query($query);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

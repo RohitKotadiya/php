@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 
 {% block body %}
+{% set baseUrl = '/cybercom/php/ecom_portal/Public' %} 
 
 <div id="catData">
     <h2>{{catData.categoryName}}</h2>
-    <img src="../../{{catData.categoryImage}}" alt="" height="150px" width="150px">
 </div>
-<div id="productData"> 
- <table border="1" align="center">
+<div id="productData" > 
      {% for product in productData %}
-         <tr>
-            <td colspan="2"><img src="../../{{product.productImage}}" alt=""
-                height="120px" width="120px" ></td>
-            <td>{{ product.productName}}</td>
-            <td>{{ product.productDesc }} </td>
-            <td>{{ product.stock }} </td>
-         </tr>    
+         <div id="product" style="display: inline-block; padding: 40px;">
+            <div id="img">
+                <a href="{{baseUrl}}/productView/View/{{product.urlKey}}">
+                <img src="../../{{product.productImage}}" alt="" height="120px" width="120px" > 
+                </a>
+            </div>
+            <div>Name :{{ product.productName}}</div>
+            <div>Desc :{{ product.productDesc }}</div> 
+            <div>Quantity :{{ product.stock }}</div> 
+        </div>
      {% endfor %}
- </table>
 </div>
 
 {% endblock %}

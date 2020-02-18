@@ -6,7 +6,7 @@ use \App\Models\Home;
 use \App\Models\Category;
 
 class CategoryView extends \Core\BaseController {
-
+    
     public function viewAction() {
         $urlKey = $this->routeParams['urlkey'];
         $catData = Category::viewCatData($urlKey);

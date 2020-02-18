@@ -5,11 +5,14 @@ use \App\Models\Category;
 
 class Categories extends \Core\BaseController {
     public $errList = [];
-  
-    public static function addAction() {
-        $categoryList = Category::getCategoryList();
-        View::renderTemplate("Admin/Categories/showCategoryForm.html",[
-                                                            'categoryList' => $categoryList,
+    public function __construct($routeParams) {
+        parent::__construct($routeParams);
+        $catObj = new Category();
+        $this->categoryList = $catObj->getCategoryList();
+    }
+    public function addAction() {
+       View::renderTemplate("Admin/Categories/showCategoryForm.html",[
+                                                            'categoryList' => $this->categoryList,
                                                             'categoryData' => $_POST['category']]);
     }
     public function addCategoryAction() {
@@ -21,22 +24,19 @@ class Categories extends \Core\BaseController {
                 echo $this->displayPopup('Added Successfully','/cybercom/php/ecom_portal/Public/Admin/Categories');
             }
         }else {
-            $categoryList = Category::getCategoryData();
             View::renderTemplate("Admin/Categories/showCategoryForm.html",['errList' => $this->errList,
-                                                            'categoryList' => $categoryList,
+                                                            'categoryList' => $this->categoryList,
                                                             'categoryData' => $_POST['category']]);     
         }
     }
     public function editCategoryAction() {
-        $categoryList = Category::getCategoryList();
         $catId = $this->routeParams['id'];
         $singleCategory = Category::getSingleCategory($catId);
-        View::renderTemplate("Admin/Categories/showCategoryForm.html",['categoryList' => $categoryList,
+        View::renderTemplate("Admin/Categories/showCategoryForm.html",['categoryList' => $this->categoryList,
                                                                 'edit' => 'edit',
                                                                 'categoryData' => $singleCategory[0]]);
     }
     public function updateCategoryAction() {
-        $categoryList = Category::getCategoryList();
         $catId = $this->routeParams['id'];
         $this->validateForm($_POST['category']);
         if(empty($this->errList)) {
@@ -47,7 +47,7 @@ class Categories extends \Core\BaseController {
             }
         }else {
             View::renderTemplate("Admin/Categories/showCategoryForm.html", ['errList' => $this->errList,
-                                                                    'categoryList' => $categoryList,
+                                                                    'categoryList' => $this->categoryList,
                                                                     'edit' => 'edit', 
                                                                     'categoryData' => $_POST['category']]);
         }
