@@ -67,8 +67,6 @@ class Categories extends \Core\BaseController {
                                             break;
                 case 'description'      : $preparedData['description'] = $fieldValue;
                                             break;
-                case 'urlKey'           : $preparedData['urlKey'] = $fieldValue;
-                                            break;
                 case 'parentCategoryId'         : $preparedData['parentCategoryId'] = $fieldValue;
                                             break;
                 case 'status'           : $preparedData['status'] = $fieldValue;
@@ -76,6 +74,7 @@ class Categories extends \Core\BaseController {
             }
         }
         $preparedData['categoryImage'] = parent::validateFile('categoryImage', 'categories');
+        $preparedData['urlKey'] = parent::generateUrl($_POST['category']['categoryName']);
         return $preparedData;
     }
     protected function validateForm($formData) {

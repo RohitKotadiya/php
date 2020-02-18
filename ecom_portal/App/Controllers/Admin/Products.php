@@ -78,8 +78,6 @@ class Products extends \Core\BaseController {
                                             break;
                 case 'price'            : $preparedData['price'] = $fieldValue;
                                             break;
-                case 'urlKey'           : $preparedData['urlKey'] = $fieldValue;
-                                            break;
                 case 'SKU'              : $preparedData['SKU'] = $fieldValue;
                                             break;
                 case 'status'           : $preparedData['status'] = $fieldValue;
@@ -89,6 +87,7 @@ class Products extends \Core\BaseController {
 
             }
         }
+        $preparedData['urlKey'] = parent::generateUrl($_POST['product']['productName']);
         $preparedData['productImage'] = parent::validateFile('productImage');
         return $preparedData;
     }

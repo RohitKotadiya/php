@@ -6,7 +6,7 @@
     <img src="../../{{singleProduct.productImage}}" alt="" height="200px" width="200px">
     <p>Price : {{singleProduct.price}}</p>
     <p>Description : {{singleProduct.shortDesc}}</p>
-    <p>Quantity : {{singleProduct.stock}}</p>
+    <p>Quantity : <input type="number" name="quantity" min="1" max="{{singleProduct.stock}}"></p>
     <input type="submit" value="ADD TO CART">
 </div>
 

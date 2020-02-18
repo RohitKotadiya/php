@@ -44,12 +44,11 @@ class Cms extends \Core\BaseController {
                                             break;
                 case 'content'      : $preparedData['content'] = $fieldValue;
                                             break;
-                case 'urlKey'           : $preparedData['urlKey'] = $fieldValue;
-                                            break;
                 case 'status'           : $preparedData['status'] = $fieldValue;
                                             break;
             }
         }
+        $preparedData['urlKey'] = parent::generateUrl($_POST['page']['pageTitle']);
         return $preparedData;
     }
     protected function before() { 

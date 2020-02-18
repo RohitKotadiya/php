@@ -48,6 +48,9 @@ abstract class BaseController {
             return false;
         } 
     }
+    public static function generateUrl($name) {
+        return str_replace(' ', '-', $name);
+    }
 }
 
 ?>
