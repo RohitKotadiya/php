@@ -59,7 +59,7 @@
               </ul>
             </li>              
             {% endfor %}
-            <li><a href="{{baseUrl}}/userCart/showCart">View Cart</a></li>
+            <li><button id="viewCart" data-toggle="modal" data-target="#cartModal">View Cart</button></li>
             <li><a href="{{baseUrl}}/{{loginAction}}">{{loginValue}}</a></li>
             <li><a href="" style="margin-left: 250px;" >User : {{session.userId}}</a></li>
           </ul>
@@ -70,6 +70,39 @@
     {% block body %}
 
     {% endblock %}
+
+    
+    <!-- CART  -->
+   
+
+  <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="exampleModalLabel">
+              Your Shopping Cart
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+          
+              <table class="table table-image" id="cart-data">
+          
+              </table>
+          <div class="d-flex justify-content-end">
+              <h5>Total: <span class="price text-success">89$</span></h5>
+          </div>
+          </div>
+          <div class="modal-footer border-top-0 d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Checkout</button>
+          </div>
+      </div>
+      </div>
+      </div>
+      <!-- CART END-->
 
 <p></p>   
 <footer class="navbar navbar-default ">
@@ -84,5 +117,8 @@
   </nav>  
       <p class="text-muted" align="center">This is a footer</p>
 </footer>
+
+<script src="/cybercom/php/ecom_portal/App/Views/base.js"></script>
+
 </body>
 </html>

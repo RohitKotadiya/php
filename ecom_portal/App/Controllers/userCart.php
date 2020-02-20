@@ -19,11 +19,8 @@ class userCart extends \Core\BaseController {
     }
     public function showCart() {
         $cartItems = Cart::getCartItem($_SESSION['userId']); 
-        $categoryList = Home::getCategoryList();
-        $pageList = Home::getPageList();
-        View::renderTemplate("User/Cart/showCart.html",['categoryList' => $categoryList,
-                                                                'pageList' => $pageList,
-                                                                'cartItems' => $cartItems]);
+        echo json_encode($cartItems);
+   
     }
 }
 ?>
