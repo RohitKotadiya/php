@@ -19,12 +19,6 @@ class Category extends \Core\Model {
         return parent::updateRecord('category', $data, "categoryId = $catId");
     }
     public static function removeCategoryData($catId) {
-        $productIds = parent::fetchData('productId', 'product_category', "categoryId = $catId");
-        foreach($productIds as $key) {
-            foreach($key as $id) {
-                parent::deleteRecord('product', "productId = $id");
-            }
-        }
         return parent::deleteRecord('category', "categoryId = $catId");
     }
 

@@ -14,7 +14,7 @@ abstract class BaseController {
         $methodName = $methodName . 'Action';
         if(method_exists($this, $methodName)) {
             if($this->before() !== false) {
-                call_user_func_array([$this, $methodName] , $args);
+                   call_user_func_array([$this, $methodName] , $args);
                 $this->after();
             }
         }else {

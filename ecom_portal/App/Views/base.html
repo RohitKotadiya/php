@@ -6,8 +6,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    {% set userId = session.userId %}
+    {% if userId is empty  %}
+      {% set loginValue = 'LOGIN' %}
+      {% set loginAction = 'Register/loginForm' %}
+    {% else %}
+      {% set loginValue = 'LOGOUT' %}
+      {% set loginAction = 'Register/userLogout' %}
+    {% endif %}
+
     {% set baseUrl = '/cybercom/php/ecom_portal/Public' %} 
-</head>
+          <style>
+                span {
+                    color: red;
+                }
+                label {
+                    display: inline-block;
+                    padding: 5px;
+                    width: 150px;
+                }
+                input[type='submit']{
+                    margin-left: 25%;
+                    margin-top: 20px;
+                }
+                form{
+                    width: 500px;
+                }
+        </style>
+  </head>
+
 <body>
     <br>
     <nav class="navbar navbar-inverse">
@@ -32,13 +59,16 @@
               </ul>
             </li>              
             {% endfor %}
-            <li><a href="{{baseUrl}}/admin/login">ADMIN LOGIN</a></li>
+            <li><a href="{{baseUrl}}/userCart/showCart">View Cart</a></li>
+            <li><a href="{{baseUrl}}/{{loginAction}}">{{loginValue}}</a></li>
+            <li><a href="" style="margin-left: 250px;" >User : {{session.userId}}</a></li>
           </ul>
         </div>
       </nav>
+      <br>
 
     {% block body %}
-            
+
     {% endblock %}
 
 <p></p>   

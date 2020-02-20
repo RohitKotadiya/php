@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Registration Form {% endblock %}
+
+{% block body %}
+
+{% set baseUrl = '/cybercom/php/ecom_portal/Public' %} 
+
+<h1> Login </h1>
+    <form action="validateLogin" method="POST"> 
+        <div class="userEmail">
+            <label>User Email</label>
+            <input type="text" name="user[userEmail]">
+        </div>
+        <div class="password">
+            <label for="">Password </label>
+            <input type="password" name="user[password]">
+        </div>
+        <div class="submit">
+            <input type="submit" value="LOGIN" name="login">
+        </div>
+        <div class="register">
+            <a href="{{baseUrl}}/Register/registerForm" >REGISTER</a>
+        </div>
+    </form>
+
+{% endblock %}

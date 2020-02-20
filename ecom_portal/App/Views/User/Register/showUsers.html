@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Show Users {% endblock %}
+
+{% block body %}
+    <h2> User Information </h2>
+    <table border="1">
+        <tr>
+            <th>Username </th>
+            <th>Email Address </th>
+            <th>Password </th>
+            <th colspan="2">Actions</th>
+        </tr>
+        {% for singleUser in allUser %}
+            <tr>
+                <td>{{ singleUser.firstName}}</td>
+                <td>{{ singleUser.emailId }} </td>
+                <td>{{ singleUser.password }}</td>
+                <td><a href="/cybercom/php/MVC/Public/Register/{{ singleUser.userId }}/editUser"> edit</a></td>
+                <td><a href="/cybercom/php/MVC/Public/Register/{{ singleUser.userId }}/deleteUser">delete </a></td>
+            </tr>    
+        {% endfor %}
+    </table>
+{% endblock %}

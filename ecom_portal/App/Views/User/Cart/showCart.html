@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} {% endblock %}
+
+{% block body %}
+    <h3>Welcome </h3>
+    {% for cartItem in cartItems %}
+
+    <h2> productId : {{cartItem.productId}}</h2>
+   <h2>Quantity : {{cartItem.quantity}}</h2> 
+   {% endfor %}
+{% endblock %}
