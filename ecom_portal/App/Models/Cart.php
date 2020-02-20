@@ -23,6 +23,9 @@ class Cart extends \Core\Model {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public static function removeProductFromCart($productId, $userId) {
+        return parent::deleteRecord('cart', "userId = '$userId' and productId = '$productId'");
+    }
 }
 
 ?>

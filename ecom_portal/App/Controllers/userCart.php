@@ -12,15 +12,19 @@ class userCart extends \Core\BaseController {
         $cartData['userId'] = $_POST['userId'];
         $cartData['quantity'] = $_POST['quantity'];
         if(Cart::addProductToCart($cartData)) {
-            $cartItems = Cart::getCartItem($_SESSION['userId']); 
-            // print_r($cartItems);
-            echo json_encode($cartItems);
+            echo json_encode("Added to cart!");
         }
     }
     public function showCart() {
         $cartItems = Cart::getCartItem($_SESSION['userId']); 
         echo json_encode($cartItems);
    
+    }
+    public function removeCartItem() {
+        $pId = $_POST['productId'];
+        if(Cart::removeProductFromCart($pId, $_SESSION['userId'])) {
+            echo json_encode("Item Removed");
+        }
     }
 }
 ?>
