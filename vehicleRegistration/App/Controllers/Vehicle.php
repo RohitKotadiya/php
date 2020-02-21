@@ -26,7 +26,24 @@ class Vehicle extends \Core\BaseController {
         }
     }
     public function editService() {
-        
+        $serviceId = $this->routeParams['id'];
+        $singleService = VehicleService::getSingleService($serviceId);
+        View::renderTemplate("User/Service/serviceRegistration.html",['edit' =>'edit','errList' => $this->errList, 
+        'postData' => $singleService[0]]);
+    }
+    public function updateService() {
+        $serviceId = $_POST['serviceId'];
+        $this->validateForm($_POST['service']);
+        if(empty($this->errList)) {
+            $cleanServiceData = $this->prepareServiceData($_POST['service']);
+            if(VehicleService::updateServiceData($cleanServiceData, $serviceId)) {
+                    echo $this->displayPopup('Updated Succsfully!');
+                    $serviceData = VehicleService::getServiceData();
+                    View::renderTemplate("User/userHome.html",['serviceData' => $serviceData]);
+            }                    
+        }else {
+            $this->serviceRegistration();
+        }
     }
     protected function prepareServiceData($data) {
         $preparedData = [];

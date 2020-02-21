@@ -3,10 +3,19 @@
 {% block title %} Service Registration Form {% endblock %}
 
 {% block body %}
+    {% set baseUrl = '/cybercom/php/vehicleRegistration/Public' %}
+
+    {% if edit == edit %}
+        {% set btnValue = 'UPDATE SERVICE' %}
+        {% set actionVal = 'Vehicle/updateService' %}
+    {% else %}
+        {% set btnValue = 'REGISTER SERVICE' %}
+        {% set actionVal = 'Vehicle/addService' %}
+    {% endif %}
 
     {% set slotList = {"9-10":1,"10-11":2,"11-12":3,"12-01":4,"01-02":5,"02-03":6,"03-04":7,"04-05":8,"05-06":9} %}
     <br><h2>REGISTER SERVICE</h2><br>
-    <form action="/cybercom/php/vehicleRegistration/Public/Vehicle/addService" method="POST">
+    <form action="{{baseUrl}}/{{actionVal}}" method="POST">
         <div id="service">
             <div class="title">
                 <label> Title : </label>
@@ -36,9 +45,14 @@
            <div class="timeSlot">
                <label>Time Slot</label>
                <select name="service[timeSlot]">
-                    {%for key,value in slotList %}
-                        <option value="{{value}}">{{key}}</option>
-                    {% endfor %}
+                {%for key,value in slotList %}
+                    {% if value == postData.timeSlot %}
+                        {% set selected = "selected" %}
+                    {% else %}
+                        {% set selected = "" %}
+                    {% endif %}  
+                    <option value="{{value}}" {{selected}}>{{key}}</option>
+                {% endfor %}
                </select>
            </div>
            <div class="serviceCenter">
@@ -49,12 +63,13 @@
                      <option value="3">3</option>
             </select>
         </div>
+        <input type="hidden" value={{postData.serviceId}} name="serviceId">
             <div class="submit">
-                <input type="submit" value="REGISTER SESRVICE" name="submit">
+                <input type="submit" value="{{btnValue}}" name="submit">
             </div>
         </div>
     </form>
     <script>
-        
+
     </script>
 {% endblock %}

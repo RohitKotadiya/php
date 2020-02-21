@@ -21,6 +21,9 @@ class VehicleService extends \Core\Model {
         return parent::fetchData('count(*)>2 as count', 'service_registration', "date = '$date' and timeSlot = '$timeSlot'");
         
     }
+    public static function updateServiceData($data, $serviceId) {
+        return parent::updateRecord("service_registration", $data, "serviceId = $serviceId");
+    }
     public static function allServiceRequest() {
         $query = "SELECT 
                     S.* ,
@@ -39,5 +42,8 @@ class VehicleService extends \Core\Model {
     }
     public static function approveServiceRequest($id, $data) {
         return parent::updateRecord("service_registration", $data, "serviceId = $id");
+    }
+    public static function getSingleService($serviceId) {
+        return parent::fetchData('*', 'service_registration', "serviceId = $serviceId");
     }
 }   
