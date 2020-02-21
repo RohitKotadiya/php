@@ -35,23 +35,26 @@
         <tr>
             <th>requestId </th>
             <th>userId</th>
+            <th>user Name</th>
             <th>Title</th>
             <th> date</th>
             <th> Time Slot </th>
             <th> Status </th>
-            <th>Action</th>
+            <th colspan="2">Action</th>
         </tr>
         {% for request in requestData %}
             <tr>
                 <td>{{ request.serviceId}}</td>
                 <td>{{ request.userId}}</td>
+                <td>{{ request.firstName}}</td>
                 <td>{{ request.title }} </td>
                  <td>{{ request.date }} </td>
                  <td>{{ request.timeSlot }} </td>
     
                 <td>{{ request.status }} </td>
                 <td><a href="{{baseUrl}}/admin/{{request.serviceId}}/approveRequest">Approve</a></td>
-                </tr>    
+                <td><a href="{{baseUrl}}/Vehicle/{{request.serviceId}}/editService">edit</a></td>    
+            </tr>    
         {% endfor %}
     </table>
     {% endif %}

@@ -22,7 +22,20 @@ class VehicleService extends \Core\Model {
         
     }
     public static function allServiceRequest() {
-        return parent::fetchData('*', 'service_registration');
+        $query = "SELECT 
+                    S.* ,
+                    U.* 
+                FROM
+                    service_registration AS S 
+                LEFT JOIN 
+                    user AS U 
+                ON	
+                    S.userId = U.userId";
+
+        $db = static::getDB();
+        $stmt = $db->query($query);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;    
     }
     public static function approveServiceRequest($id, $data) {
         return parent::updateRecord("service_registration", $data, "serviceId = $id");

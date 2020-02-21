@@ -25,6 +25,9 @@ class Vehicle extends \Core\BaseController {
             $this->serviceRegistration();
         }
     }
+    public function editService() {
+        
+    }
     protected function prepareServiceData($data) {
         $preparedData = [];
         foreach($data as $fieldName => $fieldValue) {
