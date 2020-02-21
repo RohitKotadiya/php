@@ -49,19 +49,19 @@ class Vehicle extends \Core\BaseController {
         $preparedData = [];
         foreach($data as $fieldName => $fieldValue) {
             switch($fieldName) {
-                case 'title'    : $preparedData['title'] = $fieldValue;
+                case 'title'        : $preparedData['title'] = $fieldValue;
                                         break;
-                case 'vehicleNumber'    : $preparedData['vehicleNumber'] = $fieldValue;
-                                    break;
-                case 'licenceNumber'      : $preparedData['licenceNumber'] = $fieldValue;
-                                    break;
-                case 'date'      : $preparedData['date'] = $fieldValue;
+                case 'vehicleNumber': $preparedData['vehicleNumber'] = $fieldValue;
                                         break;
-                case 'timeSlot'         : $preparedData['timeSlot'] = $fieldValue;
+                case 'licenceNumber': $preparedData['licenceNumber'] = $fieldValue;
                                         break;
-                case 'vehicleIssue'      : $preparedData['vehicleIssue'] = $fieldValue;
+                case 'date'         : $preparedData['date'] = $fieldValue;
+                                        break;
+                case 'timeSlot'     : $preparedData['timeSlot'] = $fieldValue;
+                                        break;
+                case 'vehicleIssue' : $preparedData['vehicleIssue'] = $fieldValue;
                                     break;
-                case 'serviceCenter'         : $preparedData['serviceCenter'] = $fieldValue;
+                case 'serviceCenter' : $preparedData['serviceCenter'] = $fieldValue;
                                     break;
             }
         }

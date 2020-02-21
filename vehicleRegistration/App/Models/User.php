@@ -7,6 +7,9 @@ class User extends \Core\Model {
     public static function insertUserData($data) {
         return parent::insertData('user', $data);
     }
+    public static function insertAddressData($data) {
+        return parent::insertData('user_address', $data);
+    }
     public static function getUserData() {
         return parent::fetchData('*', 'user');
     }

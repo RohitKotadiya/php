@@ -34,6 +34,22 @@
                 <label> Password :</label> <input type="password" name="register[confirmPass]"> 
                 <span>{{ errList.confirmPass }}</span>
             </div>
+            <div class="street">
+                <label> Street :</label> <input type="text" name="address[street]"> 
+                <span>{{ errList.street }}</span>
+            </div>
+            <div class="city">
+                <label> city :</label> <input type="text" name="address[city]"> 
+            </div>
+            <div class="state">
+                <label> State :</label> <input type="text" name="address[state]"> 
+            </div>
+            <div class="zipCode">
+                <label> zipCode :</label> <input type="number" name="address[zipCode]"> 
+            </div>
+            <div class="country">
+                <label> country :</label> <input type="text" name="address[country]"> 
+            </div>
             <div class="submit">
                 <input type="submit" value="REGISTER" name="submit">
             </div>

@@ -31,7 +31,10 @@ class Users extends \Core\BaseController {
         $this->validateForm($_POST['register']);
         if(empty($this->errList)) {
             $cleanUserData = $this->prepareUserData($_POST['register']);
-            if(User::insertUserData($cleanUserData) ) {
+            $addressData = $this->prepareAddData($_POST['address']);
+            $lastUserId = User::insertUserData($cleanUserData);
+            $addressData['userId'] = $lastUserId;
+            if(User::insertAddressData($addressData)) {
                 echo $this->displayPopup('Registered Succsfully!','/cybercom/php/vehicleRegistration/Public/Users/loginForm');
             }
         }else {
@@ -52,7 +55,25 @@ class Users extends \Core\BaseController {
                 case 'phoneNumber'      : $preparedData['phoneNumber'] = $fieldValue;
                                         break;
                 case 'pass'         : $preparedData['password'] = $fieldValue;
+                                        break;                      
+            }
+        }
+        return $preparedData;
+    }
+    protected function prepareAddData($data) {
+        $preparedData = [];
+        foreach($data as $fieldName => $fieldValue) {
+            switch($fieldName) {
+                case 'street'   : $preparedData['street'] = $fieldValue;
                                         break;
+                case 'city'     : $preparedData['city'] = $fieldValue;
+                                    break;
+                case 'state'    : $preparedData['state'] = $fieldValue;
+                                    break;
+                case 'country'  : $preparedData['country'] = $fieldValue;
+                                        break;
+                case 'zipCode'  : $preparedData['zipCode'] = $fieldValue;
+                                        break;                      
             }
         }
         return $preparedData;
