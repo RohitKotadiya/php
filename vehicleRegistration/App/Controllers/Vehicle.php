@@ -15,22 +15,11 @@ class Vehicle extends \Core\BaseController {
         $this->validateForm($_POST['service']);
         if(empty($this->errList)) {
             $cleanServiceData = $this->prepareServiceData($_POST['service']);
-            $licenceValidate =  $this->validateLicenceNumber($cleanServiceData['licenceNumber'], $cleanServiceData['vehicleNumber']);
-            $slotValidate = $this->validateSlot($cleanServiceData['date'],$cleanServiceData['timeSlot']);
-
-            if($licenceValidate){
-                if($slotValidate) {
-                    if(VehicleService::insertServiceData($cleanServiceData)) {
-                        echo $this->displayPopup('Registered Succsfully!');
-                        $serviceData = VehicleService::getServiceData();
-                        View::renderTemplate("User/userHome.html",['serviceData' => $serviceData]);                    }
-                }else {
-                    echo $this->displayPopup('Please Enter Valid Slot');
-                    $this->serviceRegistration();
-                }
-            }else {
-                echo $this->displayPopup('Please Enter Valid licenceId and Vehice Numbber');
-                $this->serviceRegistration();
+            if($this->validateData($cleanServiceData)) {
+                if(VehicleService::insertServiceData($cleanServiceData)) {
+                    echo $this->displayPopup('Registered Succsfully!');
+                    $serviceData = VehicleService::getServiceData();
+                    View::renderTemplate("User/userHome.html",['serviceData' => $serviceData]);                    }
             }
         }else {
             $this->serviceRegistration();
@@ -104,6 +93,24 @@ class Vehicle extends \Core\BaseController {
             return 0;
         }else {
             return 1;
+        }
+    }
+    public function validateData($cleanServiceData) {
+        $licenceNumber = $cleanServiceData['licenceNumber'];
+        $vehicleNumber = $cleanServiceData['vehicleNumber'];
+        $serviceDate = $cleanServiceData['date'];
+        $serviceTime = $cleanServiceData['timeSlot'];
+        $licenceValidate =  $this->validateLicenceNumber($licenceNumber, $vehicleNumber);
+        $slotValidate = $this->validateSlot($serviceDate, $serviceTime);
+        
+        if($licenceValidate == 1 && $slotValidate == 1) {
+            return 1;
+        }elseif($licenceValidate == 0) {
+            echo $this->displayPopup('Please Enter Valid licenceId and Vehice Numbber');
+            $this->serviceRegistration();
+        }else {
+            echo $this->displayPopup('Please Enter Valid Slot');
+            $this->serviceRegistration();
         }
     }
 }

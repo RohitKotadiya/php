@@ -18,7 +18,7 @@ class VehicleService extends \Core\Model {
             "licenceNumber = '$licenceId' or vehicleNumber = '$vehicleNumber' and NOT userId = '$userId'");
     }   
     public static function fetchSlots($date, $timeSlot) {
-        return parent::fetchData('count(*)>3 as count', 'service_registration', "date = '$date' and timeSlot = '$timeSlot'");
+        return parent::fetchData('count(*)>2 as count', 'service_registration', "date = '$date' and timeSlot = '$timeSlot'");
         
     }
     public static function allServiceRequest() {
