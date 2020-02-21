@@ -7,24 +7,11 @@
 {% set baseUrl = '/cybercom/php/vehicleRegistration/Public' %} 
 <h1>Welcome {{session.userId}}</h1>
 
-<form action="/cybercom/php/vehicleRegistration/Public/Vehicle/serviceRegistration" method="POST">
+<form action="{{baseUrl}}/Vehicle/serviceRegistration" method="POST">
     <input type="submit" value="SERVICE REGISTRATION">
-    <a href="/cybercom/php/vehicleRegistration/Public/Users/userLogout">LOGOUT</a>
+    <a href="{{baseUrl}}/Users/userLogout">LOGOUT</a>
 </form>
-<!-- <button onclick="registerService()">SERVICE REGISTRATION</button> -->
 <br><br>
-    <div id="form"></div>
-<!--     
-<script>
-    function registerService() {
-            $.ajax({url:'/cybercom/php/vehicleRegistration/Public/Vehicle/serviceRegistration',
-                    
-					success: function(form){
-                        $("#form").html(form);
-					}});
-        }
-    
-</script> -->
 
 {% if serviceData|length != 0 %}
 <table border="1">

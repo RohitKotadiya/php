@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <title>{% block title %} Dashboard {% endblock %} </title>
-    <!-- <link rel="stylesheet" href="dashboard.css" type="text/css"> -->
     <style>
         span {
                 color: red;
@@ -32,7 +33,7 @@
     <h1> Welcome Admin</h1>
     {% if requestData|length != 0 %}
     <table border="1">
-        <tr>
+        <tr><th></th>
             <th>requestId </th>
             <th>userId</th>
             <th>user Name</th>
@@ -43,7 +44,11 @@
             <th colspan="2">Action</th>
         </tr>
         {% for request in requestData %}
-            <tr>
+            <tr>{% if request.status == 0 %}
+                    <td><input type="checkbox" name="serviceStatus[]" id="chkBox" value="{{request.serviceId}}"></td>
+                {% else %}
+                    <td></td>
+                {% endif %}
                 <td>{{ request.serviceId}}</td>
                 <td>{{ request.userId}}</td>
                 <td>{{ request.firstName}}</td>
@@ -56,7 +61,25 @@
                 <td><a href="{{baseUrl}}/Vehicle/{{request.serviceId}}/editService">edit</a></td>    
             </tr>    
         {% endfor %}
-    </table>
+    </table><br>
+    <button id="chkBtn">Approve Cheked</button>
     {% endif %}
+
+    <script>
+        $("#chkBtn").click(function(){
+            var val = [];
+            $(':checkbox:checked').each(function(i){
+                val[i] = $(this).val();
+            });
+            $.ajax({url: "{{baseUrl}}/Admin/approveChecked", 
+                method: "POST",
+                data: { chekedData : val },
+                    
+                success: function(result){
+                    location.reload();
+            }});
+        });
+        
+    </script>
 </body>
 </html>

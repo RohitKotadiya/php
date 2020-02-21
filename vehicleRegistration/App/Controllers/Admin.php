@@ -17,6 +17,13 @@ class Admin extends \Core\BaseController {
         $requestData = VehicleService::allServiceRequest();
         View::renderTemplate('Admin/dashboard.html',['requestData' => $requestData]);
     }
+    public function approveChecked() {
+        $checkedData = $_POST['chekedData'];
+        $data['status'] = 1;
+        foreach($checkedData as $serviceId) {
+            VehicleService::approveServiceRequest($serviceId, $data);
+        }
+    }
    
 }
 ?>

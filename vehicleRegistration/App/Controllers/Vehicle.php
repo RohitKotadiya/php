@@ -45,6 +45,7 @@ class Vehicle extends \Core\BaseController {
             $this->serviceRegistration();
         }
     }
+   
     protected function prepareServiceData($data) {
         $preparedData = [];
         foreach($data as $fieldName => $fieldValue) {
