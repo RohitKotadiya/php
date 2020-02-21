@@ -3,37 +3,40 @@
 {% block body %}
 {% set baseUrl = '/cybercom/php/ecom_portal/Public' %} 
 
+<script>
+    // $.ajax({
+    // url: '/cybercom/php/ecom_portal/Public/userCart/itemExist',
+    // method : "POST",
+    // dataType : "json",
+    // data : {pId : "{{singleProduct.productId}}"},
+
+    // success : function(status) {
+    //     if(status == 1) {
+    //         var btn = `<button onclick="viewCart();" value="VIEW CART">VIEW CART</button>`;
+    //         $("#showCart").html(btn);
+    //     }else {
+    //         var btn = `<p>Quantity : <input type="number" id="quantity" min="1" max="{{singleProduct.stock}}"></p>
+    //             <button onclick="addToCart('{{singleProduct.productId}}','{{session.userId}}');" value="ADD TO CART">ADD TO CART</button>`;
+    //         $("#addCart").html(btn);
+    //     }
+    // }
+// });
+</script>
 <div id="singleProduct" style="margin-left: 30%;";">
     <h2>{{singleProduct.productName}}</h2>
     <img src="../../{{singleProduct.productImage}}" alt="" height="200px" width="200px">
     <p>Price : {{singleProduct.price}}</p>
     <p>Description : {{singleProduct.shortDesc}}</p>
-    <p>Quantity : 
-        <input type="number" id="quantity" min="1" max="{{singleProduct.stock}}"></p>
-        <button id="addToCart" value="ADD TO CART">ADD TO CART</button>
-        
-        <script type="text/javascript">
-            
-            $("#addToCart").click(
-                function(){
-                    var quant = $("#quantity").val();
-                    var pId = "{{singleProduct.productId}}";
-                    var userId = "{{session.userId}}";
-                    formData = {productId : pId, userId : userId , quantity : quant };
-                    $.ajax({
-                        url: '{{baseUrl}}/userCart/addToCart',
-                        method : "POST",
-                        dataType : "json",
-                        data : formData,
+    
+    <div id="addCart">
+        <p>Quantity : <input type="number" id="quantity" min="1" max="{{singleProduct.stock}}"></p>
+               <button onclick="addToCart('{{singleProduct.productId}}','{{session.userId}}','{{singleProduct.price}}');" 
+                    value="ADD TO CART">ADD TO CART</button>
 
-                        success : function(msg) {
-                           alert(msg);
-                        }
-                    });
-                }); 
-        </script>
-
-       
+    </div>
+    <div id="showCart"></div>
 </div>
+<script src="/cybercom/php/ecom_portal/App/Views/User/Products/productIndex.js"></script>
 
+      
 {% endblock %}
