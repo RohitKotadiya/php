@@ -21,4 +21,10 @@ class VehicleService extends \Core\Model {
         return parent::fetchData('count(*)>3 as count', 'service_registration', "date = '$date' and timeSlot = '$timeSlot'");
         
     }
+    public static function allServiceRequest() {
+        return parent::fetchData('*', 'service_registration');
+    }
+    public static function approveServiceRequest($id, $data) {
+        return parent::updateRecord("service_registration", $data, "serviceId = $id");
+    }
 }   

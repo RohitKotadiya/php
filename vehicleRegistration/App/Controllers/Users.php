@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use \Core\View;
 use \App\Models\User;
+use \App\Models\VehicleService;
+
 
 class Users extends \Core\BaseController {
     public $errList = [];
@@ -16,7 +18,8 @@ class Users extends \Core\BaseController {
             $_SESSION['userId'] = $result[0]['userId'];
             $_SESSION['userloginTime'] = date('Y-m-d H:i:s', time());
             $_SESSION['userLoggedIn'] = true;
-            View::renderTemplate("User/userHome.html"); 
+            $serviceData = VehicleService::getServiceData();
+            View::renderTemplate("User/userHome.html",['serviceData' => $serviceData]); 
         }else {
             echo $this->displayPopup('Username or Password Wrong!','loginForm');
         }  

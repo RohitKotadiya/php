@@ -10,10 +10,6 @@ class Vehicle extends \Core\BaseController {
     public function serviceRegistration() {
         View::renderTemplate("User/Service/serviceRegistration.html",['errList' => $this->errList, 
         'postData' => $_POST['service']]);
-}
-    public function showData() {
-        $serviceData = VehicleService::getServiceData();
-        View::renderTemplate("User/userHome.html",['serviceData' => $serviceData]); 
     }
     public function addService() {
         $this->validateForm($_POST['service']);
@@ -26,8 +22,8 @@ class Vehicle extends \Core\BaseController {
                 if($slotValidate) {
                     if(VehicleService::insertServiceData($cleanServiceData)) {
                         echo $this->displayPopup('Registered Succsfully!');
-                        View::renderTemplate("User/userHome.html"); 
-                    }
+                        $serviceData = VehicleService::getServiceData();
+                        View::renderTemplate("User/userHome.html",['serviceData' => $serviceData]);                    }
                 }else {
                     echo $this->displayPopup('Please Enter Valid Slot');
                     $this->serviceRegistration();
