@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %} Registration Form {% endblock %}
+
+{% block body %}
+    <br><h2>REGISTER</h2><br>
+    <form action="addUser" method="POST">
+        <div id="register">
+            <div class="firstName">
+                <label> First Name : </label>
+                <input type="text" name="register[firstName]" value="{{ postData.firstName }}">
+                <span>{{ errList.firstName }}</span>
+            </div>
+            <div class="lastName">
+                <label>Last Name : </label>
+                <input type="text" name="register[lastName]" value="{{ postData.lastName }}">
+                <span>{{ errList.lastName }}</span>
+            </div>
+            <div class="email">
+                <label>Email</label> 
+                <input type="email" name="register[emailId]" value="{{ postData.emailId }}">
+                <span>{{ errList.emailId }}</span>
+            </div>
+            <div class="phoneNumber">
+                <label>phoneNumber : </label>
+                <input type="text" name="register[phoneNumber]" value="{{ postData.phoneNumber}}">
+                <span>{{ errList.phoneNumber }}</span>
+            </div>
+            <div class="password">
+                <label>Password :</label> 
+                 <input type="password" name="register[pass]">
+            </div>
+            <div class="confirmPass">
+                <label> Password :</label> <input type="password" name="register[confirmPass]"> 
+                <span>{{ errList.confirmPass }}</span>
+            </div>
+            <div class="submit">
+                <input type="submit" value="REGISTER" name="submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}

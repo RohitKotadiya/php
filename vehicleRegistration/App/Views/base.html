@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %} {% endblock %} </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    {% set userId = session.userId %}
+    {% if userId is empty  %}
+      {% set loginValue = 'LOGIN' %}
+      {% set loginAction = 'Users/loginForm' %}
+    {% else %}
+      {% set loginValue = 'LOGOUT' %}
+      {% set loginAction = 'Users/userLogout' %}
+    {% endif %}
+
+    {% set baseUrl = '/cybercom/php/vehicleRegistration/Public' %} 
+          <style>
+                span {
+                    color: red;
+                }
+                label {
+                    display: inline-block;
+                    padding: 5px;
+                    width: 150px;
+                }
+                input[type='submit']{
+                    margin-left: 25%;
+                    margin-top: 20px;
+                }
+                form{
+                    width: 500px;
+                }
+        </style>
+  </head>
+
+<body>
+    <!-- <a href="{{loginAction}}">{{loginValue}}</a> -->
+    {% block body %}
+
+    {% endblock %}
+
+    
+    <!-- CART  -->
+   
+
+  
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %} Service Registration Form {% endblock %}
+
+{% block body %}
+
+    {% set slotList = {"9-10":1,"10-11":2,"11-12":3,"12-01":4,"01-02":5,"02-03":6,"03-04":7,"04-05":8,"05-06":9} %}
+    <br><h2>REGISTER SERVICE</h2><br>
+    <form action="/cybercom/php/vehicleRegistration/Public/Vehicle/addService" method="POST">
+        <div id="service">
+            <div class="title">
+                <label> Title : </label>
+                <input type="text" name="service[title]" value="{{ postData.title }}">
+                <span>{{ errList.title }}</span>
+            </div>
+            <div class="vehicleNumber">
+                <label> vehicle Number : </label>
+                <input type="text" name="service[vehicleNumber]" value="{{ postData.vehicleNumber }}">
+                <span>{{ errList.vehicleNumber }}</span>
+            </div>
+            <div class="licenceNumber">
+                <label>licence Number :</label> 
+                <input type="licenceNumber" name="service[licenceNumber]" value="{{ postData.licenceNumber}}">
+                <span>{{ errList.licenceNumber }}</span>
+            </div>
+            <div class="vehicleIssue">
+                <label>vehicle Issue : </label>
+                <input type="text" name="service[vehicleIssue]" value="{{ postData.vehicleIssue}}">
+                <span>{{ errList.vehicleIssue }}</span>
+            </div>
+           <div class="datepicker">
+            <label>Date : </label>
+            <input type="date" name="service[date]" value="{{ postData.date}}" id="date">
+            <span>{{ errList.date }}</span>
+           </div>
+           <div class="timeSlot">
+               <label>Time Slot</label>
+               <select name="service[timeSlot]">
+                    {%for key,value in slotList %}
+                        <option value="{{value}}">{{key}}</option>
+                    {% endfor %}
+               </select>
+           </div>
+           <div class="serviceCenter">
+            <label>Service Center</label>
+            <select name="service[serviceCenter]">
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+            </select>
+        </div>
+            <div class="submit">
+                <input type="submit" value="REGISTER SESRVICE" name="submit">
+            </div>
+        </div>
+    </form>
+    <script>
+        
+    </script>
+{% endblock %}
