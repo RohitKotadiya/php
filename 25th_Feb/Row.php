@@ -59,6 +59,9 @@ class Row extends Adapter{
     }
 
     public function insertData() {
+        if($this->userId) {
+            $this->__unset("userId");
+        }
         $tableName = $this->getTableName();
         $data = $this->getData();
         $fieldNames = implode(",", array_keys($data));
